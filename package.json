@@ -1,0 +1,54 @@
+{
+  "name": "react-fit",
+  "version": "1.0.0",
+  "description": "Fit a popover element on the screen.",
+  "main": "dist/entry.js",
+  "scripts": {
+    "build": "babel src -d dist --ignore __tests__",
+    "prepublishOnly": "yarn run build",
+    "test": "yarn run test-eslint",
+    "test-eslint": "eslint src/ --ext .jsx,.js"
+  },
+  "keywords": [
+    "overflow",
+    "collision"
+  ],
+  "author": {
+    "name": "Wojciech Maj",
+    "email": "kontakt@wojtekmaj.pl"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "detect-element-overflow": "^1.1.1",
+    "prop-types": "^15.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
+  },
+  "peerDependencies": {
+    "react": ">=15.5",
+    "react-dom": ">=15.5"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/",
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wojtekmaj/react-fit.git"
+  }
+}

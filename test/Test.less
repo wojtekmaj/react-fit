@@ -1,0 +1,67 @@
+
+body {
+  margin: 0;
+  font-family: Segoe UI, Tahoma, sans-serif;
+}
+
+.Test {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  input, button {
+    font: inherit;
+  }
+
+  header {
+    flex-shrink: 0;
+    background-color: rgb(50, 54, 57);
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+    padding: 20px;
+    color: white;
+    position: relative;
+    z-index: 1;
+
+    h1 {
+      font-size: inherit;
+      margin: 0;
+    }
+  }
+
+  &__container {
+    flex-grow: 1;
+    padding: 10px;
+    position: relative;
+    overflow-y: scroll;
+
+    .ElementWithPopover {
+      width: 130px;
+      height: 42px;
+
+      button {
+        width: 130px;
+        height: 42px;
+        font-size: 12px;
+      }
+
+      &__popover {
+        display: none;
+        width: 500px;
+        height: 500px;
+        min-width: 300px;
+        min-height: 300px;
+        border: thin solid black;
+        z-index: 2;
+
+        &--isOpen {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__elementWrapper {
+    position: absolute;
+  }
+}
