@@ -4,6 +4,8 @@ import detectElementOverflow from 'detect-element-overflow';
 
 import { warnOnDev } from './shared/utils';
 
+const upperCaseFirstLetter = a => a.slice(0, 1).toUpperCase() + a.slice(1, a.length);
+
 const alignAxis = ({
   axis,
   element,
@@ -17,13 +19,13 @@ const alignAxis = ({
   const parentCollisions = detectElementOverflow(parent, document.body);
 
   const isX = axis === 'x';
-  const overflowStartProperty = isX ? 'overflowLeft' : 'overflowTop';
-  const overflowEndProperty = isX ? 'overflowRight' : 'overflowBottom';
-  const initialSizeProperty = isX ? 'clientWidth' : 'clientHeight';
-  const sizeProperty = isX ? 'width' : 'height';
-  const minSizeProperty = isX ? 'min-width' : 'min-height';
   const displayStartProperty = isX ? 'left' : 'top';
   const displayEndProperty = isX ? 'right' : 'bottom';
+  const sizeProperty = isX ? 'width' : 'height';
+  const overflowStartProperty = `overflow${upperCaseFirstLetter(displayStartProperty)}`;
+  const overflowEndProperty = `overflow${upperCaseFirstLetter(displayEndProperty)}`;
+  const initialSizeProperty = `client${upperCaseFirstLetter(sizeProperty)}`;
+  const minSizeProperty = `min-${sizeProperty}`;
 
   let availableStartSpace = -parentCollisions[overflowStartProperty] - spacing;
   let availableEndSpace = -parentCollisions[overflowEndProperty] - spacing;
