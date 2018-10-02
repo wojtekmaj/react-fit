@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
 
@@ -138,10 +139,19 @@ const alignBothAxis = (args) => {
 };
 
 export default class Fit extends Component {
-  get child() {
-    const { children } = this.props;
-    return React.Children.only(children);
+  componentDidMount() {
+    // eslint-disable-next-line react/no-find-dom-node
+    this.element = findDOMNode(this);
+
+    this.fit(this.element);
+    this.mutationOberver.observe(this.element, { attributeFilter: ['class', 'style'] });
   }
+
+  onMutation = () => {
+    this.fit(this.element);
+  };
+
+  mutationOberver = new MutationObserver(this.onMutation);
 
   fit = (element) => {
     if (!element) {
@@ -185,12 +195,9 @@ export default class Fit extends Component {
   }
 
   render() {
-    const { child } = this;
+    const { children } = this.props;
 
-    return React.cloneElement(
-      child,
-      { ref: this.fit },
-    );
+    return React.Children.only(children);
   }
 }
 
