@@ -36,7 +36,10 @@ export default class ElementWithPopover extends PureComponent {
     }
 
     return (
-      <Fit {...otherProps}>
+      <Fit
+        spacing={10}
+        {...otherProps}
+      >
         <div
           className={mergeClassNames(
             'ElementWithPopover__popover',
