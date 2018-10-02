@@ -1,6 +1,6 @@
 {
   "name": "react-fit-test-page",
-  "version": "2.17.4",
+  "version": "1.0.0-alpha",
   "description": "A test page for React-Fit.",
   "private": true,
   "scripts": {
