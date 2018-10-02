@@ -25,11 +25,13 @@ const alignAxis = ({
   const sizeProperty = isX ? 'width' : 'height';
   const overflowStartProperty = `overflow${upperCaseFirstLetter(displayStartProperty)}`;
   const overflowEndProperty = `overflow${upperCaseFirstLetter(displayEndProperty)}`;
+  const offsetSizeProperty = `offset${upperCaseFirstLetter(sizeProperty)}`;
   const initialSizeProperty = `client${upperCaseFirstLetter(sizeProperty)}`;
   const minSizeProperty = `min-${sizeProperty}`;
 
+  const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[initialSizeProperty];
   let availableStartSpace = -parentCollisions[overflowStartProperty] - spacing;
-  let availableEndSpace = -parentCollisions[overflowEndProperty] - spacing;
+  let availableEndSpace = -parentCollisions[overflowEndProperty] - spacing - scrollbarWidth;
 
   if (secondary) {
     availableStartSpace += parent[initialSizeProperty];
@@ -157,6 +159,18 @@ export default class Fit extends Component {
     if (!element) {
       return;
     }
+
+    const elementWidth = element.clientWidth;
+    const elementHeight = element.clientHeight;
+
+    // No need to recalculate - already did that for current dimensions
+    if (this.elementWidth === elementWidth && this.elementHeight === elementHeight) {
+      return;
+    }
+
+    // Save the dimensions so that we know we don't need to repeat the function if unchanged
+    this.elementWidth = elementWidth;
+    this.elementHeight = elementHeight;
 
     const parent = element.parentElement;
 
