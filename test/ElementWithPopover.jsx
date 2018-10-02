@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import mergeClassNames from 'merge-class-names';
 
-import Fit from '../src/entry';
+import Fit from '../src/Fit';
 
 import './Test.less';
 
