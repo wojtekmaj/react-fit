@@ -7,6 +7,23 @@ import { warnOnDev } from './shared/utils';
 
 const upperCaseFirstLetter = a => a.slice(0, 1).toUpperCase() + a.slice(1, a.length);
 
+const findScrollContainer = (element) => {
+  if (!element) {
+    return undefined;
+  }
+
+  let parent = element.parentElement;
+  while (parent) {
+    const { overflow } = window.getComputedStyle(parent);
+    if (overflow === 'auto' || overflow === 'scroll' || overflow === 'auto scroll' || overflow === 'scroll auto') {
+      return parent;
+    }
+    parent = parent.parentElement;
+  }
+
+  return document.body;
+};
+
 const alignAxis = ({
   axis,
   element,
@@ -16,8 +33,10 @@ const alignAxis = ({
 }) => {
   const style = window.getComputedStyle(element);
 
+  const scrollContainer = findScrollContainer(element);
+
   const parent = element.parentElement;
-  const parentCollisions = detectElementOverflow(parent, document.body);
+  const parentCollisions = detectElementOverflow(parent, scrollContainer);
 
   const isX = axis === 'x';
   const displayStartProperty = isX ? 'left' : 'top';
