@@ -41,11 +41,13 @@ const alignAxis = ({
   const willFitEnd = (size = initialSize) => size <= availableEndSpace;
 
   const displayStart = () => {
+    element.style[displayStartProperty] = null;
     element.style[displayEndProperty] = secondary ? '0' : '100%';
   };
 
   const displayEnd = () => {
     element.style[displayStartProperty] = secondary ? '0' : '100%';
+    element.style[displayEndProperty] = null;
   };
 
   const displayIfFits = (size = initialSize, willFit, display) => {
