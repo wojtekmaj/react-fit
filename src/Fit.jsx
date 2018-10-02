@@ -224,5 +224,5 @@ Fit.propTypes = {
 
 Fit.defaultProps = {
   mainAxis: 'y',
-  spacing: 20,
+  spacing: 8,
 };
