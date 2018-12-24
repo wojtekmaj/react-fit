@@ -45,8 +45,27 @@ export default class ElementWithPopover extends PureComponent {
             'ElementWithPopover__popover',
             isOpen && 'ElementWithPopover__popover--isOpen',
           )}
+          ref={(ref) => {
+            if (!ref) {
+              return;
+            }
+
+            requestAnimationFrame(() => {
+              const style = {};
+              if (ref.style.top) { style.top = ref.style.top; }
+              if (ref.style.bottom) { style.bottom = ref.style.bottom; }
+              if (ref.style.left) { style.left = ref.style.left; }
+              if (ref.style.right) { style.right = ref.style.right; }
+
+              const el = ref.querySelector('pre[name="style"]');
+              el.innerHTML = JSON.stringify(style, null, '  ');
+            });
+          }}
         >
-          Popover
+          <pre name="props">
+            {JSON.stringify(otherProps, null, '  ')}
+          </pre>
+          <pre name="style" />
         </div>
       </Fit>
     );
