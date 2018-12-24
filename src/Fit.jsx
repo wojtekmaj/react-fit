@@ -5,7 +5,7 @@ import detectElementOverflow from 'detect-element-overflow';
 
 import { warnOnDev } from './shared/utils';
 
-const upperCaseFirstLetter = a => a.slice(0, 1).toUpperCase() + a.slice(1, a.length);
+const upperCaseFirstLetter = a => a[0].toUpperCase() + a.slice(1, a.length);
 
 const findScrollContainer = (element) => {
   if (!element) {
