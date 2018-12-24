@@ -44,8 +44,9 @@ const alignAxis = ({
   const sizeProperty = isX ? 'width' : 'height';
   const overflowStartProperty = `overflow${upperCaseFirstLetter(displayStartProperty)}`;
   const overflowEndProperty = `overflow${upperCaseFirstLetter(displayEndProperty)}`;
-  const offsetSizeProperty = `offset${upperCaseFirstLetter(sizeProperty)}`;
-  const initialSizeProperty = `client${upperCaseFirstLetter(sizeProperty)}`;
+  const uppercasedSizeProperty = upperCaseFirstLetter(sizeProperty);
+  const offsetSizeProperty = `offset${uppercasedSizeProperty}`;
+  const initialSizeProperty = `client${uppercasedSizeProperty}`;
   const minSizeProperty = `min-${sizeProperty}`;
 
   const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[initialSizeProperty];
