@@ -97,34 +97,21 @@ const alignAxis = ({
     const moreSpaceStart = availableStartSpace > availableEndSpace;
     const minSize = style[minSizeProperty] && parseInt(style[minSizeProperty], 10);
 
-    const shrinkToSize = (newSize) => {
+    const shrinkToSize = (size) => {
+      if (minSize && size < minSize) {
+        warnOnDev(`<Fit />'s child will not fit anywhere with its current ${minSizeProperty} of ${minSize}px.`);
+      }
+
+      const newSize = Math.max(size, minSize || 0);
       warnOnDev(`<Fit />'s child needed to have its ${sizeProperty} decreased to ${newSize}px.`);
       element.style[sizeProperty] = `${newSize}px`;
     };
 
-    const shrinkToMaximumPossibleSize = (availableSpace) => {
-      const newSize = Math.min(clientSize, availableSpace);
-      shrinkToSize(newSize);
-    };
-
-    const shrinkToMinimum = () => {
-      warnOnDev(`<Fit />'s child will not fit anywhere on the screen with its current ${minSizeProperty}.`);
-      element.style[sizeProperty] = `${minSize}px`;
-    };
-
     if (moreSpaceStart) {
-      if (!minSize || willFitStart(minSize)) {
-        shrinkToMaximumPossibleSize(availableStartSpace);
-      } else {
-        shrinkToMinimum();
-      }
+      shrinkToSize(availableStartSpace);
       displayStart();
     } else {
-      if (!minSize || willFitEnd(minSize)) {
-        shrinkToMaximumPossibleSize(availableEndSpace);
-      } else {
-        shrinkToMinimum();
-      }
+      shrinkToSize(availableEndSpace);
       displayEnd();
     }
   };
