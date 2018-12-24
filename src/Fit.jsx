@@ -129,15 +129,15 @@ const alignAxis = ({
     }
   };
 
-  let isResized;
+  let fits;
 
   if (invertAxis) {
-    isResized = displayStartIfFits() || displayEndIfFits();
+    fits = displayStartIfFits() || displayEndIfFits();
   } else {
-    isResized = displayEndIfFits() || displayStartIfFits();
+    fits = displayEndIfFits() || displayStartIfFits();
   }
 
-  if (!isResized) {
+  if (!fits) {
     displayWhereverShrinkedFits();
   }
 };
