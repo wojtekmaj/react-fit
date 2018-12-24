@@ -166,19 +166,23 @@ export default class Fit extends Component {
   componentDidMount() {
     if (!displayContentsSupported) {
       // eslint-disable-next-line react/no-find-dom-node
-      this.element = findDOMNode(this);
+      const element = findDOMNode(this);
+      this.container = element;
+      this.element = element;
     }
-    this.fit(this.element);
+    this.fit();
     this.mutationOberver.observe(this.element, { attributeFilter: ['class', 'style'] });
   }
 
   onMutation = () => {
-    this.fit(this.element);
+    this.fit();
   };
 
   mutationOberver = new MutationObserver(this.onMutation);
 
-  fit = (element) => {
+  fit = () => {
+    const { container, element } = this;
+
     if (!element) {
       return;
     }
@@ -195,10 +199,7 @@ export default class Fit extends Component {
     this.elementWidth = elementWidth;
     this.elementHeight = elementHeight;
 
-    let parent = element.parentElement;
-    if (displayContentsSupported) {
-      parent = parent.parentElement;
-    }
+    const parent = container.parentElement;
 
     /**
      * We need to ensure that <Fit />'s child has a absolute position. Otherwise,
@@ -249,7 +250,10 @@ export default class Fit extends Component {
       return (
         <div
           style={{ display: 'contents' }}
-          ref={(ref) => { this.element = ref && ref.firstChild; }}
+          ref={(ref) => {
+            this.container = ref;
+            this.element = ref && ref.firstChild;
+          }}
         >
           {child}
         </div>
