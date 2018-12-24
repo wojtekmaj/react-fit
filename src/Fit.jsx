@@ -8,7 +8,7 @@ import { warnOnDev } from './shared/utils';
 const isDisplayContentsSupported = 'CSS' in window && CSS.supports('display', 'contents');
 const isMutationOberverSupported = 'MutationObserver' in window;
 
-const upperCaseFirstLetter = a => a[0].toUpperCase() + a.slice(1, a.length);
+const capitalize = a => a[0].toUpperCase() + a.slice(1);
 
 const findScrollContainer = (element) => {
   if (!element) {
@@ -46,9 +46,9 @@ const alignAxis = ({
   const startProperty = isX ? 'left' : 'top';
   const endProperty = isX ? 'right' : 'bottom';
   const sizeProperty = isX ? 'width' : 'height';
-  const overflowStartProperty = `overflow${upperCaseFirstLetter(startProperty)}`;
-  const overflowEndProperty = `overflow${upperCaseFirstLetter(endProperty)}`;
-  const uppercasedSizeProperty = upperCaseFirstLetter(sizeProperty);
+  const overflowStartProperty = `overflow${capitalize(startProperty)}`;
+  const overflowEndProperty = `overflow${capitalize(endProperty)}`;
+  const uppercasedSizeProperty = capitalize(sizeProperty);
   const offsetSizeProperty = `offset${uppercasedSizeProperty}`;
   const clientSizeProperty = `client${uppercasedSizeProperty}`;
   const minSizeProperty = `min-${sizeProperty}`;
