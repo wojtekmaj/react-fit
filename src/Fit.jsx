@@ -43,42 +43,42 @@ const alignAxis = ({
   const parentCollisions = detectElementOverflow(parent, scrollContainer);
 
   const isX = axis === 'x';
-  const displayStartProperty = isX ? 'left' : 'top';
-  const displayEndProperty = isX ? 'right' : 'bottom';
+  const startProperty = isX ? 'left' : 'top';
+  const endProperty = isX ? 'right' : 'bottom';
   const sizeProperty = isX ? 'width' : 'height';
-  const overflowStartProperty = `overflow${upperCaseFirstLetter(displayStartProperty)}`;
-  const overflowEndProperty = `overflow${upperCaseFirstLetter(displayEndProperty)}`;
+  const overflowStartProperty = `overflow${upperCaseFirstLetter(startProperty)}`;
+  const overflowEndProperty = `overflow${upperCaseFirstLetter(endProperty)}`;
   const uppercasedSizeProperty = upperCaseFirstLetter(sizeProperty);
   const offsetSizeProperty = `offset${uppercasedSizeProperty}`;
-  const initialSizeProperty = `client${uppercasedSizeProperty}`;
+  const clientSizeProperty = `client${uppercasedSizeProperty}`;
   const minSizeProperty = `min-${sizeProperty}`;
 
-  const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[initialSizeProperty];
+  const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[clientSizeProperty];
   let availableStartSpace = -parentCollisions[overflowStartProperty] - spacing;
   let availableEndSpace = -parentCollisions[overflowEndProperty] - spacing - scrollbarWidth;
 
   if (secondary) {
-    availableStartSpace += parent[initialSizeProperty];
-    availableEndSpace += parent[initialSizeProperty];
+    availableStartSpace += parent[clientSizeProperty];
+    availableEndSpace += parent[clientSizeProperty];
   }
 
-  const initialSize = element[initialSizeProperty];
+  const clientSize = element[clientSizeProperty];
 
   const willFitStart = size => size <= availableStartSpace;
   const willFitEnd = size => size <= availableEndSpace;
 
   const displayStart = () => {
-    element.style[displayStartProperty] = 'unset';
-    element.style[displayEndProperty] = secondary ? '0' : '100%';
+    element.style[startProperty] = 'unset';
+    element.style[endProperty] = secondary ? '0' : '100%';
   };
 
   const displayEnd = () => {
-    element.style[displayStartProperty] = secondary ? '0' : '100%';
-    element.style[displayEndProperty] = 'unset';
+    element.style[startProperty] = secondary ? '0' : '100%';
+    element.style[endProperty] = 'unset';
   };
 
   const displayIfFits = (willFit, display) => {
-    const fits = willFit(initialSize);
+    const fits = willFit(clientSize);
     if (fits) {
       display();
     }
@@ -103,7 +103,7 @@ const alignAxis = ({
     };
 
     const shrinkToMaximumPossibleSize = (availableSpace) => {
-      const newSize = Math.min(initialSize, availableSpace);
+      const newSize = Math.min(clientSize, availableSpace);
       shrinkToSize(newSize);
     };
 
