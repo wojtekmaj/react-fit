@@ -73,11 +73,11 @@ const alignAxis = ({
   };
 
   const displayIfFits = (size = initialSize, willFit, display) => {
-    if (willFit(size)) {
+    const fits = willFit(size);
+    if (fits) {
       display();
-      return true;
     }
-    return false;
+    return fits;
   };
 
   const displayStartIfFits = (size = initialSize) => (
