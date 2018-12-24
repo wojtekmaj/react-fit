@@ -39,12 +39,14 @@ body {
     overflow-y: scroll;
 
     .ElementWithPopover {
-      width: 130px;
-      height: 42px;
+      @button-width: 130px;
+      @button-height: 42px;
+      width: @button-width;
+      height: @button-height;
 
       button {
-        width: 130px;
-        height: 42px;
+        width: @button-width;
+        height: @button-height;
         font-size: 12px;
       }
 
@@ -52,6 +54,8 @@ body {
         display: none;
         width: 270px;
         height: 270px;
+        min-width: 2 * @button-width + 10px + 10px;
+        min-height: 2 * @button-height + 10px + 10px;
         padding: 10px;
         border: thin solid black;
         background: white;
