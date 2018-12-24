@@ -15,6 +15,12 @@ A component that aligns its child relatively to its parent while being aware whe
     );
     ```
 
+### Compatibility
+
+Your project needs to use React 15.5 or later.
+
+A bug in React 16.5.x causes React-Fit to crash on older browsers. While React-Fit will continue to work on React 16.5.x, it's highly recommended that you either upgrade to ^16.6.0 or downgrade to <=16.4.2.
+
 ## How does it work?
 1. By default, the element provided to `<Fit />` as a child is displayed below its parent, aligned to the left.
 2. If the element can't fit in this position and collides with bottom and/or right border of the window, `<Fit />` checks if there's more space for the element on the other side(s) of the axis/axes the collision(s) has been detected on. If so, the element is moved above its parent and/or aligned to the right, depending on collision axis.
