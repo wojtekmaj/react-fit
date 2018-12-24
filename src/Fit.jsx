@@ -15,7 +15,7 @@ const findScrollContainer = (element) => {
   let parent = element.parentElement;
   while (parent) {
     const { overflow } = window.getComputedStyle(parent);
-    if (overflow === 'auto' || overflow === 'scroll' || overflow === 'auto scroll' || overflow === 'scroll auto') {
+    if (overflow.split(' ').every(o => o === 'auto' || o === 'scroll')) {
       return parent;
     }
     parent = parent.parentElement;
