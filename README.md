@@ -15,6 +15,8 @@ A component that aligns its child relatively to its parent while being aware whe
     );
     ```
 
+## Getting started
+
 ### Compatibility
 
 Your project needs to use React 15.5 or later.
