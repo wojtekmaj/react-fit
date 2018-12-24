@@ -5,6 +5,8 @@ import detectElementOverflow from 'detect-element-overflow';
 
 import { warnOnDev } from './shared/utils';
 
+const displayContentsSupported = 'CSS' in window && CSS.supports('display', 'contents');
+
 const upperCaseFirstLetter = a => a[0].toUpperCase() + a.slice(1, a.length);
 
 const findScrollContainer = (element) => {
@@ -162,9 +164,10 @@ const alignBothAxis = (args) => {
 
 export default class Fit extends Component {
   componentDidMount() {
-    // eslint-disable-next-line react/no-find-dom-node
-    this.element = findDOMNode(this);
-
+    if (!displayContentsSupported) {
+      // eslint-disable-next-line react/no-find-dom-node
+      this.element = findDOMNode(this);
+    }
     this.fit(this.element);
     this.mutationOberver.observe(this.element, { attributeFilter: ['class', 'style'] });
   }
@@ -192,7 +195,10 @@ export default class Fit extends Component {
     this.elementWidth = elementWidth;
     this.elementHeight = elementHeight;
 
-    const parent = element.parentElement;
+    let parent = element.parentElement;
+    if (displayContentsSupported) {
+      parent = parent.parentElement;
+    }
 
     /**
      * We need to ensure that <Fit />'s child has a absolute position. Otherwise,
@@ -237,7 +243,20 @@ export default class Fit extends Component {
   render() {
     const { children } = this.props;
 
-    return React.Children.only(children);
+    const child = React.Children.only(children);
+
+    if (displayContentsSupported) {
+      return (
+        <div
+          style={{ display: 'contents' }}
+          ref={(ref) => { this.element = ref && ref.firstChild; }}
+        >
+          {child}
+        </div>
+      );
+    }
+
+    return child;
   }
 }
 
