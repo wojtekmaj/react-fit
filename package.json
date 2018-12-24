@@ -3,6 +3,7 @@
   "version": "1.0.0-alpha.2",
   "description": "Fit a popover element on the screen.",
   "main": "dist/Fit.js",
+  "source": "src/Fit.jsx",
   "scripts": {
     "build": "babel src -d dist --ignore **/__tests__",
     "prepublishOnly": "yarn run build",
