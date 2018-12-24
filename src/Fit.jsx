@@ -64,9 +64,6 @@ const alignAxis = ({
 
   const offsetSize = element[offsetSizeProperty];
 
-  const willFitStart = size => size <= availableStartSpace;
-  const willFitEnd = size => size <= availableEndSpace;
-
   const displayStart = () => {
     element.style[startProperty] = 'unset';
     element.style[endProperty] = secondary ? '0' : '100%';
@@ -77,8 +74,8 @@ const alignAxis = ({
     element.style[endProperty] = 'unset';
   };
 
-  const displayIfFits = (willFit, display) => {
-    const fits = willFit(offsetSize);
+  const displayIfFits = (availableSpace, display) => {
+    const fits = offsetSize <= availableSpace;
     if (fits) {
       display();
     }
@@ -86,11 +83,11 @@ const alignAxis = ({
   };
 
   const displayStartIfFits = () => (
-    displayIfFits(willFitStart, displayStart)
+    displayIfFits(availableStartSpace, displayStart)
   );
 
   const displayEndIfFits = () => (
-    displayIfFits(willFitEnd, displayEnd)
+    displayIfFits(availableEndSpace, displayEnd)
   );
 
   const displayWhereverShrinkedFits = () => {
