@@ -28,6 +28,7 @@ const findScrollContainer = (element) => {
 
 const alignAxis = ({
   axis,
+  container,
   element,
   invertAxis,
   secondary,
@@ -37,7 +38,7 @@ const alignAxis = ({
 
   const scrollContainer = findScrollContainer(element);
 
-  const parent = element.parentElement;
+  const parent = container.parentElement;
   const parentCollisions = detectElementOverflow(parent, scrollContainer);
 
   const isX = axis === 'x';
@@ -233,6 +234,7 @@ export default class Fit extends Component {
     } = this.props;
 
     alignBothAxis({
+      container,
       element,
       invertAxis,
       invertSecondaryAxis,
