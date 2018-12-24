@@ -5,8 +5,8 @@ import detectElementOverflow from 'detect-element-overflow';
 
 import { warnOnDev } from './shared/utils';
 
-const displayContentsSupported = 'CSS' in window && CSS.supports('display', 'contents');
-const mutationOberverSupported = 'MutationObserver' in window;
+const isDisplayContentsSupported = 'CSS' in window && CSS.supports('display', 'contents');
+const isMutationOberverSupported = 'MutationObserver' in window;
 
 const upperCaseFirstLetter = a => a[0].toUpperCase() + a.slice(1, a.length);
 
@@ -166,7 +166,7 @@ const alignBothAxis = (args) => {
 
 export default class Fit extends Component {
   componentDidMount() {
-    if (!displayContentsSupported) {
+    if (!isDisplayContentsSupported) {
       // eslint-disable-next-line react/no-find-dom-node
       const element = findDOMNode(this);
       this.container = element;
@@ -174,7 +174,7 @@ export default class Fit extends Component {
     }
     this.fit();
 
-    if (mutationOberverSupported) {
+    if (isMutationOberverSupported) {
       this.mutationOberver.observe(this.element, { attributeFilter: ['class', 'style'] });
     }
   }
@@ -183,7 +183,7 @@ export default class Fit extends Component {
     this.fit();
   };
 
-  mutationOberver = mutationOberverSupported && new MutationObserver(this.onMutation);
+  mutationOberver = isMutationOberverSupported && new MutationObserver(this.onMutation);
 
   fit = () => {
     const { container, element } = this;
@@ -252,7 +252,7 @@ export default class Fit extends Component {
 
     const child = React.Children.only(children);
 
-    if (displayContentsSupported) {
+    if (isDisplayContentsSupported) {
       return (
         <div
           style={{ display: 'contents' }}
