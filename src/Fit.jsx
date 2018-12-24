@@ -93,7 +93,7 @@ const alignAxis = ({
     const minSize = style[minSizeProperty] && parseInt(style[minSizeProperty], 10);
 
     const shrinkToSize = (newSize) => {
-      warnOnDev(`<Fit />'s child needed to be shrank to ${newSize}px.`);
+      warnOnDev(`<Fit />'s child needed to have its ${sizeProperty} decreased to ${newSize}px.`);
       element.style[sizeProperty] = `${newSize}px`;
     };
 
