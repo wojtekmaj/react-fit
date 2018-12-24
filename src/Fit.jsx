@@ -6,6 +6,7 @@ import detectElementOverflow from 'detect-element-overflow';
 import { warnOnDev } from './shared/utils';
 
 const displayContentsSupported = 'CSS' in window && CSS.supports('display', 'contents');
+const mutationOberverSupported = 'MutationObserver' in window;
 
 const upperCaseFirstLetter = a => a[0].toUpperCase() + a.slice(1, a.length);
 
@@ -172,14 +173,17 @@ export default class Fit extends Component {
       this.element = element;
     }
     this.fit();
-    this.mutationOberver.observe(this.element, { attributeFilter: ['class', 'style'] });
+
+    if (mutationOberverSupported) {
+      this.mutationOberver.observe(this.element, { attributeFilter: ['class', 'style'] });
+    }
   }
 
   onMutation = () => {
     this.fit();
   };
 
-  mutationOberver = new MutationObserver(this.onMutation);
+  mutationOberver = mutationOberverSupported && new MutationObserver(this.onMutation);
 
   fit = () => {
     const { container, element } = this;
