@@ -217,11 +217,17 @@ export default class Fit extends Component {
       parent.style.position = 'relative';
     }
 
-    const { invertAxis, mainAxis, spacing } = this.props;
+    const {
+      invertAxis,
+      invertSecondaryAxis,
+      mainAxis,
+      spacing,
+    } = this.props;
 
     alignBothAxis({
       element,
       invertAxis,
+      invertSecondaryAxis,
       axis: mainAxis,
       spacing,
     });
@@ -237,6 +243,7 @@ export default class Fit extends Component {
 Fit.propTypes = {
   children: PropTypes.node,
   invertAxis: PropTypes.bool,
+  invertSecondaryAxis: PropTypes.bool,
   mainAxis: PropTypes.oneOf(['x', 'y']),
   spacing: PropTypes.number,
 };
