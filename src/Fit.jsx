@@ -62,7 +62,7 @@ const alignAxis = ({
     availableEndSpace += parent[clientSizeProperty];
   }
 
-  const clientSize = element[clientSizeProperty];
+  const offsetSize = element[offsetSizeProperty];
 
   const willFitStart = size => size <= availableStartSpace;
   const willFitEnd = size => size <= availableEndSpace;
@@ -78,7 +78,7 @@ const alignAxis = ({
   };
 
   const displayIfFits = (willFit, display) => {
-    const fits = willFit(clientSize);
+    const fits = willFit(offsetSize);
     if (fits) {
       display();
     }
