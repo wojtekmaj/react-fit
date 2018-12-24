@@ -21,7 +21,7 @@ const findScrollContainer = (element) => {
     parent = parent.parentElement;
   }
 
-  return document.body;
+  return document.documentElement;
 };
 
 const alignAxis = ({
