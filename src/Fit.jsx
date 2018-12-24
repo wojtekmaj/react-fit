@@ -75,8 +75,8 @@ const alignAxis = ({
     element.style[displayEndProperty] = 'unset';
   };
 
-  const displayIfFits = (size, willFit, display) => {
-    const fits = willFit(size);
+  const displayIfFits = (willFit, display) => {
+    const fits = willFit(initialSize);
     if (fits) {
       display();
     }
@@ -84,11 +84,11 @@ const alignAxis = ({
   };
 
   const displayStartIfFits = () => (
-    displayIfFits(initialSize, willFitStart, displayStart)
+    displayIfFits(willFitStart, displayStart)
   );
 
   const displayEndIfFits = () => (
-    displayIfFits(initialSize, willFitEnd, displayEnd)
+    displayIfFits(willFitEnd, displayEnd)
   );
 
   const displayWhereverShrinkedFits = () => {
