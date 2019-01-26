@@ -1,3 +1,7 @@
+![downloads](https://img.shields.io/npm/dt/react-fit.svg) ![build](https://img.shields.io/travis/wojtekmaj/react-fit/master.svg) ![dependencies](https://img.shields.io/david/wojtekmaj/react-fit.svg
+) ![dev dependencies](https://img.shields.io/david/dev/wojtekmaj/react-fit.svg
+)
+
 # React-Fit
 A component that aligns its child relatively to its parent while being aware where it may and may not fit.
 
