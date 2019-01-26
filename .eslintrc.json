@@ -12,7 +12,6 @@
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["element", "ref"] }],
     "prefer-destructuring": "warn",
     "prefer-spread": "warn",
-    "react/require-default-props": "off",
-    "react/sort-comp": "off"
+    "react/require-default-props": "off"
   }
 }
