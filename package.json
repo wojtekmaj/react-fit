@@ -9,7 +9,7 @@
     "clean": "rimraf dist",
     "prepublishOnly": "yarn run clean && yarn run build",
     "test": "yarn run test-eslint",
-    "test-eslint": "eslint src/ --ext .jsx,.js"
+    "test-eslint": "eslint src/ test/ --ext .jsx,.js"
   },
   "keywords": [
     "overflow",
