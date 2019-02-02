@@ -45,6 +45,7 @@
     "react-dom": ">=15.5"
   },
   "files": [
+    ".babelrc",
     "LICENSE",
     "README.md",
     "dist/",
