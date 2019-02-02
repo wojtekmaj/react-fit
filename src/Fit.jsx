@@ -149,8 +149,6 @@ const alignBothAxis = (args) => {
 };
 
 export default class Fit extends Component {
-  mutationOberver = isMutationOberverSupported && new MutationObserver(this.onMutation);
-
   componentDidMount() {
     if (!isDisplayContentsSupported) {
       // eslint-disable-next-line react/no-find-dom-node
@@ -168,6 +166,10 @@ export default class Fit extends Component {
   onMutation = () => {
     this.fit();
   };
+
+  // Has to be defined after onMutation
+  // eslint-disable-next-line react/sort-comp
+  mutationOberver = isMutationOberverSupported && new MutationObserver(this.onMutation);
 
   fit = () => {
     const { container, element } = this;
