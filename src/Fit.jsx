@@ -6,7 +6,7 @@ import detectElementOverflow from 'detect-element-overflow';
 import { warnOnDev } from './shared/utils';
 
 const isDisplayContentsSupported = 'CSS' in window && CSS.supports('display', 'contents');
-const isMutationOberverSupported = 'MutationObserver' in window;
+const isMutationObserverSupported = 'MutationObserver' in window;
 
 const capitalize = a => a[0].toUpperCase() + a.slice(1);
 
@@ -158,8 +158,8 @@ export default class Fit extends Component {
     }
     this.fit();
 
-    if (isMutationOberverSupported) {
-      this.mutationOberver.observe(this.element, { attributeFilter: ['class', 'style'] });
+    if (isMutationObserverSupported) {
+      this.mutationObserver.observe(this.element, { attributeFilter: ['class', 'style'] });
     }
   }
 
@@ -169,7 +169,7 @@ export default class Fit extends Component {
 
   // Has to be defined after onMutation
   // eslint-disable-next-line react/sort-comp
-  mutationOberver = isMutationOberverSupported && new MutationObserver(this.onMutation);
+  mutationObserver = isMutationObserverSupported && new MutationObserver(this.onMutation);
 
   fit = () => {
     const { container, element } = this;
