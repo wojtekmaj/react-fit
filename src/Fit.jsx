@@ -159,7 +159,10 @@ export default class Fit extends Component {
     this.fit();
 
     if (isMutationObserverSupported) {
-      this.mutationObserver.observe(this.element, { attributeFilter: ['class', 'style'] });
+      this.mutationObserver.observe(this.element, {
+        attributes: true,
+        attributeFilter: ['class', 'style'],
+      });
     }
   }
 
