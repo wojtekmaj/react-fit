@@ -34,6 +34,7 @@ export default class Test extends Component {
       <div
         className="Test__elementWrapper"
         style={style}
+        key={`${first}_${second}_${description}`}
       >
         <ElementWithPopover
           label={`${first} ${second} - ${description}`}
