@@ -12,8 +12,10 @@
     "test-eslint": "eslint src/ test/ --ext .jsx,.js"
   },
   "keywords": [
-    "overflow",
-    "collision"
+    "react",
+    "collision",
+    "collision-detection",
+    "position"
   ],
   "author": {
     "name": "Wojciech Maj",
