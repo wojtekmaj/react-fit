@@ -5,8 +5,18 @@ import detectElementOverflow from 'detect-element-overflow';
 
 import { warnOnDev } from './shared/utils';
 
-const isDisplayContentsSupported = typeof window !== 'undefined' && 'CSS' in window && CSS.supports('display', 'contents');
-const isMutationObserverSupported = typeof window !== 'undefined' && 'MutationObserver' in window;
+const isBrowser = typeof window !== 'undefined';
+
+const isDisplayContentsSupported = (
+  isBrowser
+  && 'CSS' in window
+  && 'supports' in window.CSS
+  && CSS.supports('display', 'contents')
+);
+const isMutationObserverSupported = (
+  isBrowser
+  && 'MutationObserver' in window
+);
 
 const capitalize = a => a[0].toUpperCase() + a.slice(1);
 
