@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import mergeClassNames from 'merge-class-names';
 
 import Fit from '../src/Fit';
@@ -80,3 +81,7 @@ export default class ElementWithPopover extends PureComponent {
     );
   }
 }
+
+ElementWithPopover.propTypes = {
+  label: PropTypes.node,
+};
