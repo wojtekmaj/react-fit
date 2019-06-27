@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Test.less';
 
@@ -13,15 +13,13 @@ const END = { x: 'right', y: 'bottom' };
 
 const corners = Array.from(new Array(4), (el, index) => ([index > 1, Boolean(index % 2)]));
 
-export default class Test extends Component {
-  state = {
-    mainAxis: 'y',
-  };
+export default function Test() {
+  const mainAxis = 'y';
 
-  renderElement({
+  function renderElement({
+    // eslint-disable-next-line react/prop-types
     description, displayAbove, displayAlignRight, style,
   }) {
-    const { mainAxis } = this.state;
     const secondAxis = { x: 'y', y: 'x' }[mainAxis];
     const MAIN_BEGIN = BEGIN[mainAxis];
     const MAIN_END = END[mainAxis];
@@ -46,7 +44,7 @@ export default class Test extends Component {
     );
   }
 
-  renderElements({ collideMainAxis, collideSecondaryAxis, description }) {
+  function renderElements({ collideMainAxis, collideSecondaryAxis, description }) {
     return corners.map(([invertAxis, invertSecondaryAxis]) => {
       const displayAbove = collideSecondaryAxis ? !invertAxis : invertAxis;
       const displayAlignRight = collideMainAxis ? !invertSecondaryAxis : invertSecondaryAxis;
@@ -54,57 +52,53 @@ export default class Test extends Component {
       style[invertAxis ? 'bottom' : 'top'] = MARGIN + (collideMainAxis ? MARGIN + BUTTON_HEIGHT : 0);
       style[invertSecondaryAxis ? 'right' : 'left'] = MARGIN + (collideSecondaryAxis ? MARGIN + BUTTON_WIDTH : 0);
 
-      return this.renderElement({
+      return renderElement({
         description, displayAbove, displayAlignRight, style,
       });
     });
   }
 
-  renderNoCollisionsElements() {
-    return this.renderElements({ description: 'no collisions' });
+  function renderNoCollisionsElements() {
+    return renderElements({ description: 'no collisions' });
   }
 
-  renderMainCollisionElements() {
-    const { mainAxis } = this.state;
-    return this.renderElements({
+  function renderMainCollisionElements() {
+    return renderElements({
       collideMainAxis: true,
       description: `${mainAxis === 'y' ? 'horizontal' : 'vertical'} collision`,
     });
   }
 
-  renderSecondaryCollisionElements() {
-    const { mainAxis } = this.state;
-    return this.renderElements({
+  function renderSecondaryCollisionElements() {
+    return renderElements({
       collideSecondaryAxis: true,
       description: `${mainAxis === 'y' ? 'vertical' : 'horizontal'} collision`,
     });
   }
 
-  renderBothCollisionElements() {
-    return this.renderElements({
+  function renderBothCollisionElements() {
+    return renderElements({
       collideMainAxis: true,
       collideSecondaryAxis: true,
       description: 'both collisions',
     });
   }
 
-  render() {
-    return (
-      <div className="Test">
-        <header>
-          <h1>
-            react-fit test page
-          </h1>
-        </header>
-        <div className="Test__container">
-          <main className="Test__container__content">
-            {this.renderNoCollisionsElements()}
-            {this.renderMainCollisionElements()}
-            {this.renderSecondaryCollisionElements()}
-            {this.renderBothCollisionElements()}
-          </main>
-        </div>
+  return (
+    <div className="Test">
+      <header>
+        <h1>
+          react-fit test page
+        </h1>
+      </header>
+      <div className="Test__container">
+        <main className="Test__container__content">
+          {renderNoCollisionsElements()}
+          {renderMainCollisionElements()}
+          {renderSecondaryCollisionElements()}
+          {renderBothCollisionElements()}
+        </main>
       </div>
-    );
-  }
+    </div>
+  );
 }

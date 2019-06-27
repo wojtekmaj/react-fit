@@ -1,26 +1,20 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import mergeClassNames from 'merge-class-names';
 
 import Fit from '../src/Fit';
 
-import './Test.less';
+export default function ElementWithPopover({ label, ...otherProps }) {
+  const [isOpen, setIsOpen] = useState(null);
 
-export default class ElementWithPopover extends PureComponent {
-  state = {
-    isOpen: null,
+  function togglePopover() {
+    setIsOpen(prevIsOpen => !prevIsOpen);
   }
 
-  togglePopover = () => {
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-  }
-
-  renderLabel() {
-    const { label } = this.props;
-
+  function renderLabel() {
     return (
       <button
-        onClick={this.togglePopover}
+        onClick={togglePopover}
         type="button"
       >
         {label}
@@ -28,10 +22,7 @@ export default class ElementWithPopover extends PureComponent {
     );
   }
 
-  renderPopover() {
-    const { label, ...otherProps } = this.props;
-    const { isOpen } = this.state;
-
+  function renderPopover() {
     if (isOpen === null) {
       return null;
     }
@@ -72,14 +63,12 @@ export default class ElementWithPopover extends PureComponent {
     );
   }
 
-  render() {
-    return (
-      <div className="ElementWithPopover">
-        {this.renderLabel()}
-        {this.renderPopover()}
-      </div>
-    );
-  }
+  return (
+    <div className="ElementWithPopover">
+      {renderLabel()}
+      {renderPopover()}
+    </div>
+  );
 }
 
 ElementWithPopover.propTypes = {
