@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import mergeClassNames from 'merge-class-names';
 
-import Fit from '../src/Fit';
+import Fit from 'react-fit/src/Fit';
 
 export default function ElementWithPopover({ label, ...otherProps }) {
   const [isOpen, setIsOpen] = useState(null);

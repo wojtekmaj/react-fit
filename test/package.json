@@ -1,6 +1,6 @@
 {
   "name": "react-fit-test-page",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0",
   "description": "A test page for React-Fit.",
   "private": true,
   "scripts": {
@@ -16,7 +16,8 @@
     "merge-class-names": "^1.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react-fit": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
