@@ -254,11 +254,11 @@ export default class Fit extends Component {
     if (isDisplayContentsSupported) {
       return (
         <div
-          style={{ display: 'contents' }}
           ref={(ref) => {
             this.container = ref;
             this.element = ref && ref.firstChild;
           }}
+          style={{ display: 'contents' }}
         >
           {child}
         </div>

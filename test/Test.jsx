@@ -30,15 +30,15 @@ export default function Test() {
 
     return (
       <div
+        key={`${first}_${second}_${description}`}
         className="Test__elementWrapper"
         style={style}
-        key={`${first}_${second}_${description}`}
       >
         <ElementWithPopover
-          label={`${first} ${second} - ${description}`}
-          mainAxis={mainAxis}
           invertAxis={displayAbove}
           invertSecondaryAxis={displayAlignRight}
+          label={`${first} ${second} - ${description}`}
+          mainAxis={mainAxis}
         />
       </div>
     );
