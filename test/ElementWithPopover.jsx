@@ -44,10 +44,11 @@ export default function ElementWithPopover({ label, ...otherProps }) {
 
             requestAnimationFrame(() => {
               const style = {};
-              if (ref.style.top) { style.top = ref.style.top; }
-              if (ref.style.bottom) { style.bottom = ref.style.bottom; }
-              if (ref.style.left) { style.left = ref.style.left; }
-              if (ref.style.right) { style.right = ref.style.right; }
+              ['top', 'bottom', 'left', 'right'].forEach((prop) => {
+                if (ref.style[prop]) {
+                  style[prop] = ref.style[prop];
+                }
+              });
 
               const el = ref.querySelector('pre[name="style"]');
               el.innerHTML = JSON.stringify(style, null, '  ');
