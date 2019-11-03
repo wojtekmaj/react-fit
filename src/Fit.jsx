@@ -253,7 +253,7 @@ export default class Fit extends Component {
 
     if (isDisplayContentsSupported) {
       return (
-        <div
+        <span
           ref={(ref) => {
             this.container = ref;
             this.element = ref && ref.firstChild;
@@ -261,7 +261,7 @@ export default class Fit extends Component {
           style={{ display: 'contents' }}
         >
           {child}
-        </div>
+        </span>
       );
     }
 
