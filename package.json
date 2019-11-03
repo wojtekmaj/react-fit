@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "detect-element-overflow": "^1.1.1",
+    "detect-element-overflow": "^1.2.0",
     "prop-types": "^15.6.0"
   },
   "devDependencies": {
