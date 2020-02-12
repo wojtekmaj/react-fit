@@ -58,14 +58,26 @@ const alignAxis = ({
   const sizeProperty = isX ? 'width' : 'height';
   const overflowStartProperty = `overflow${capitalize(startProperty)}`;
   const overflowEndProperty = `overflow${capitalize(endProperty)}`;
+  const scrollProperty = `scroll${capitalize(startProperty)}`;
   const uppercasedSizeProperty = capitalize(sizeProperty);
   const offsetSizeProperty = `offset${uppercasedSizeProperty}`;
   const clientSizeProperty = `client${uppercasedSizeProperty}`;
   const minSizeProperty = `min-${sizeProperty}`;
 
+  const scroll = scrollContainer[scrollProperty];
   const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[clientSizeProperty];
-  let availableStartSpace = -parentCollisions[overflowStartProperty] - spacing;
-  let availableEndSpace = -parentCollisions[overflowEndProperty] - spacing - scrollbarWidth;
+
+  let availableStartSpace = (
+    -parentCollisions[overflowStartProperty]
+    - spacing
+    + scroll
+  );
+  let availableEndSpace = (
+    -parentCollisions[overflowEndProperty]
+    - spacing
+    - scroll
+    - scrollbarWidth
+  );
 
   if (secondary) {
     availableStartSpace += parent[clientSizeProperty];
