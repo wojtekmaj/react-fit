@@ -4,7 +4,11 @@ import mergeClassNames from 'merge-class-names';
 
 import Fit from 'react-fit/src/Fit';
 
-export default function ElementWithPopover({ label, ...otherProps }) {
+export default function ElementWithPopover({
+  label,
+  spacing = 0,
+  ...otherProps
+}) {
   const [isOpen, setIsOpen] = useState(null);
 
   function togglePopover() {
@@ -29,7 +33,7 @@ export default function ElementWithPopover({ label, ...otherProps }) {
 
     return (
       <Fit
-        spacing={10}
+        spacing={spacing}
         {...otherProps}
       >
         <div
@@ -74,4 +78,5 @@ export default function ElementWithPopover({ label, ...otherProps }) {
 
 ElementWithPopover.propTypes = {
   label: PropTypes.node,
+  spacing: PropTypes.number,
 };
