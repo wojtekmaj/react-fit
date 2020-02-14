@@ -46,11 +46,10 @@ function alignAxis({
   element,
   invertAxis,
   secondary,
+  scrollContainer,
   spacing,
 }) {
   const style = window.getComputedStyle(element);
-
-  const scrollContainer = findScrollContainer(element);
 
   const parent = container.parentElement;
   const parentCollisions = detectElementOverflow(parent, scrollContainer);
@@ -184,6 +183,7 @@ export default class Fit extends Component {
       const element = findDOMNode(this);
       this.container = element;
       this.element = element;
+      this.scrollContainer = findScrollContainer(element);
     }
     this.fit();
 
@@ -204,7 +204,7 @@ export default class Fit extends Component {
   mutationObserver = isMutationObserverSupported && new MutationObserver(this.onMutation);
 
   fit = () => {
-    const { container, element } = this;
+    const { scrollContainer, container, element } = this;
 
     if (!element) {
       return;
@@ -261,6 +261,7 @@ export default class Fit extends Component {
       invertAxis,
       invertSecondaryAxis,
       axis: mainAxis,
+      scrollContainer,
       spacing,
     });
   }
@@ -273,9 +274,13 @@ export default class Fit extends Component {
     if (isDisplayContentsSupported) {
       return (
         <span
-          ref={(ref) => {
-            this.container = ref;
-            this.element = ref && ref.firstChild;
+          ref={(container) => {
+            this.container = container;
+
+            const element = container && container.firstChild;
+            this.element = element;
+
+            this.scrollContainer = element && findScrollContainer(element);
           }}
           style={{ display: 'contents' }}
         >
