@@ -13,14 +13,17 @@ const isDisplayContentsSupported = (
   && 'supports' in window.CSS
   && CSS.supports('display', 'contents')
 );
+
 const isMutationObserverSupported = (
   isBrowser
   && 'MutationObserver' in window
 );
 
-const capitalize = a => a[0].toUpperCase() + a.slice(1);
+function capitalize(a) {
+  return a[0].toUpperCase() + a.slice(1);
+}
 
-const findScrollContainer = (element) => {
+function findScrollContainer(element) {
   if (!element) {
     return undefined;
   }
@@ -35,16 +38,16 @@ const findScrollContainer = (element) => {
   }
 
   return document.documentElement;
-};
+}
 
-const alignAxis = ({
+function alignAxis({
   axis,
   container,
   element,
   invertAxis,
   secondary,
   spacing,
-}) => {
+}) {
   const style = window.getComputedStyle(element);
 
   const scrollContainer = findScrollContainer(element);
@@ -146,15 +149,19 @@ const alignAxis = ({
   if (!fits) {
     displayWhereverShrinkedFits();
   }
-};
+}
 
-const alignMainAxis = args => alignAxis(args);
+function alignMainAxis(args) {
+  alignAxis(args);
+}
 
-const alignSecondaryAxis = args => alignAxis({
-  ...args,
-  axis: args.axis === 'x' ? 'y' : 'x',
-  secondary: true,
-});
+function alignSecondaryAxis(args) {
+  alignAxis({
+    ...args,
+    axis: args.axis === 'x' ? 'y' : 'x',
+    secondary: true,
+  });
+}
 
 const alignBothAxis = (args) => {
   const { invertAxis, invertSecondaryAxis, ...commonArgs } = args;
