@@ -52,7 +52,8 @@ function alignAxis({
   const style = window.getComputedStyle(element);
 
   const parent = container.parentElement;
-  const parentCollisions = detectElementOverflow(parent, scrollContainer);
+  const scrollContainerCollisions = detectElementOverflow(parent, scrollContainer);
+  const documentCollisions = detectElementOverflow(parent, document.documentElement);
 
   const isX = axis === 'x';
   const startProperty = isX ? 'left' : 'top';
@@ -66,18 +67,21 @@ function alignAxis({
   const clientSizeProperty = `client${uppercasedSizeProperty}`;
   const minSizeProperty = `min-${sizeProperty}`;
 
-  const scroll = scrollContainer[scrollProperty];
   const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[clientSizeProperty];
 
   let availableStartSpace = (
-    -parentCollisions[overflowStartProperty]
+    -Math.max(
+      scrollContainerCollisions[overflowStartProperty],
+      documentCollisions[overflowStartProperty] + document.documentElement[scrollProperty],
+    )
     - spacing
-    + scroll
   );
   let availableEndSpace = (
-    -parentCollisions[overflowEndProperty]
+    -Math.max(
+      scrollContainerCollisions[overflowEndProperty],
+      documentCollisions[overflowEndProperty] - document.documentElement[scrollProperty],
+    )
     - spacing
-    - scroll
     - scrollbarWidth
   );
 
@@ -280,7 +284,7 @@ export default class Fit extends Component {
             const element = container && container.firstChild;
             this.element = element;
 
-            this.scrollContainer = element && findScrollContainer(element);
+            this.scrollContainer = findScrollContainer(element);
           }}
           style={{ display: 'contents' }}
         >
