@@ -6,7 +6,7 @@ import Fit from 'react-fit/src/Fit';
 
 export default function ElementWithPopover({
   label,
-  spacing = 0,
+  spacing = 10,
   ...otherProps
 }) {
   const [isOpen, setIsOpen] = useState(null);
