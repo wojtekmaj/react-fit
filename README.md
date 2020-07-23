@@ -29,8 +29,8 @@ A bug in React 16.5.x causes React-Fit to crash on [browsers not supporting `dis
 
 ## How does it work?
 1. By default, the element provided to `<Fit />` as a child is displayed below its parent, aligned to the left.
-2. If the element can't fit in this position and collides with bottom and/or right border of the window, `<Fit />` checks if there's more space for the element on the other side(s) of the axis/axes the collision(s) has been detected on. If so, the element is moved above its parent and/or aligned to the right, depending on collision axis.
-3. If the element still can't fit where it's placed, `<Fit />` decreases element's size. If `min-width`/`min-height` are provided, they will be respected.
+2. If the element can't fit in this position and collides with bottom and/or right border of the window, `<Fit />` checks if there's more space for the element on the other side(s) of the axis/axes the collision(s) has been detected on. If so, the element is moved above its parent and/or aligned to the right, depending on the collision axis.
+3. If the element still can't fit where it's placed, `<Fit />` decreases the element's size. If `min-width`/`min-height` are provided, they will be respected.
 
 ## Positioning the element
 
