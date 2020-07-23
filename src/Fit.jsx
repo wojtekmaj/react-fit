@@ -228,6 +228,11 @@ export default class Fit extends Component {
 
     const parent = container.parentElement;
 
+    // Container was unmounted
+    if (!parent) {
+      return;
+    }
+
     /**
      * We need to ensure that <Fit />'s child has a absolute position. Otherwise,
      * we wouldn't be able to place the child in the correct position.
