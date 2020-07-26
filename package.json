@@ -62,5 +62,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/wojtekmaj/react-fit.git"
-  }
+  },
+  "funding": "https://github.com/wojtekmaj/react-fit?sponsor=1"
 }
