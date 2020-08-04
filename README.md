@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/react-fit.svg)](https://www.npmjs.com/package/react-fit) ![downloads](https://img.shields.io/npm/dt/react-fit.svg) ![build](https://travis-ci.com/wojtekmaj/react-fit.svg?branch=master) ![dependencies](https://img.shields.io/david/wojtekmaj/react-fit.svg
+[![npm](https://img.shields.io/npm/v/react-fit.svg)](https://www.npmjs.com/package/react-fit) ![downloads](https://img.shields.io/npm/dt/react-fit.svg) [![build](https://travis-ci.com/wojtekmaj/react-fit.svg?branch=master)](https://travis-ci.com/wojtekmaj/react-fit) ![dependencies](https://img.shields.io/david/wojtekmaj/react-fit.svg
 ) ![dev dependencies](https://img.shields.io/david/dev/wojtekmaj/react-fit.svg
 )
 
