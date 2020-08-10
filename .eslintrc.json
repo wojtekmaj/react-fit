@@ -2,8 +2,7 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
-    "es6": true,
-    "jest": true
+    "es6": true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -17,11 +16,23 @@
       "reservedFirst": ["key"]
     }],
     "react/require-default-props": "off",
-    "react/sort-prop-types": "error"
+    "react/sort-prop-types": "error",
+    "react/state-in-constructor": ["error", "never"]
   },
   "overrides": [
     {
       "files": [
+        "**/*.spec.js",
+        "**/*.spec.jsx",
+        "**/__tests__/*"
+      ],
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      "files": [
+        "sample/**",
         "test/**"
       ],
       "rules": {
