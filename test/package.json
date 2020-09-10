@@ -17,7 +17,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-fit": "latest"
+    "react-fit": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

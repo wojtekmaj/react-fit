@@ -5,6 +5,10 @@
   "main": "dist/umd/Fit.js",
   "module": "dist/esm/Fit.js",
   "source": "src/Fit.jsx",
+  "workspaces": [
+    ".",
+    "test"
+  ],
   "scripts": {
     "build": "yarn build-js-all",
     "build-js-all": "yarn build-js-esm && yarn build-js-umd",
