@@ -95,37 +95,37 @@ function alignAxis({
 
   const offsetSize = element[offsetSizeProperty];
 
-  const displayStart = () => {
+  function displayStart() {
     element.style[startProperty] = 'unset';
     element.style[endProperty] = secondary ? '0' : '100%';
-  };
+  }
 
-  const displayEnd = () => {
+  function displayEnd() {
     element.style[startProperty] = secondary ? '0' : '100%';
     element.style[endProperty] = 'unset';
-  };
+  }
 
-  const displayIfFits = (availableSpace, display) => {
+  function displayIfFits(availableSpace, display) {
     const fits = offsetSize <= availableSpace;
     if (fits) {
       display();
     }
     return fits;
-  };
+  }
 
-  const displayStartIfFits = () => (
-    displayIfFits(availableStartSpace, displayStart)
-  );
+  function displayStartIfFits() {
+    displayIfFits(availableStartSpace, displayStart);
+  }
 
-  const displayEndIfFits = () => (
-    displayIfFits(availableEndSpace, displayEnd)
-  );
+  function displayEndIfFits() {
+    displayIfFits(availableEndSpace, displayEnd);
+  }
 
-  const displayWhereverShrinkedFits = () => {
+  function displayWhereverShrinkedFits() {
     const moreSpaceStart = availableStartSpace > availableEndSpace;
     const minSize = style[minSizeProperty] && parseInt(style[minSizeProperty], 10);
 
-    const shrinkToSize = (size) => {
+    function shrinkToSize(size) {
       if (minSize && size < minSize) {
         warnOnDev(`<Fit />'s child will not fit anywhere with its current ${minSizeProperty} of ${minSize}px.`);
       }
@@ -133,7 +133,7 @@ function alignAxis({
       const newSize = Math.max(size, minSize || 0);
       warnOnDev(`<Fit />'s child needed to have its ${sizeProperty} decreased to ${newSize}px.`);
       element.style[sizeProperty] = `${newSize}px`;
-    };
+    }
 
     if (moreSpaceStart) {
       shrinkToSize(availableStartSpace);
@@ -142,7 +142,7 @@ function alignAxis({
       shrinkToSize(availableEndSpace);
       displayEnd();
     }
-  };
+  }
 
   let fits;
 
@@ -169,7 +169,7 @@ function alignSecondaryAxis(args) {
   });
 }
 
-const alignBothAxis = (args) => {
+function alignBothAxis(args) {
   const { invertAxis, invertSecondaryAxis, ...commonArgs } = args;
 
   alignMainAxis({
@@ -181,7 +181,7 @@ const alignBothAxis = (args) => {
     ...commonArgs,
     invertAxis: invertSecondaryAxis,
   });
-};
+}
 
 export default class Fit extends Component {
   componentDidMount() {
