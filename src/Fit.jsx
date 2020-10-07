@@ -114,11 +114,11 @@ function alignAxis({
   }
 
   function displayStartIfFits() {
-    displayIfFits(availableStartSpace, displayStart);
+    return displayIfFits(availableStartSpace, displayStart);
   }
 
   function displayEndIfFits() {
-    displayIfFits(availableEndSpace, displayEnd);
+    return displayIfFits(availableEndSpace, displayEnd);
   }
 
   function displayWhereverShrinkedFits() {
