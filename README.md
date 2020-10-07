@@ -97,6 +97,8 @@ If you wish to change this spacing, you can provide `spacing` to `<Fit />`. For 
 └─┴─────────────────────────┴──────────────┘
 ```
 
+You can also provide different spacing for each side by providing an object, for example `spacing={{ top: 10, bottom: 20, left: 30, right: 40 }}`, to `<Fit />`. **Note:** Memoize the object or define it outside render function to avoid unnecessary re-renders.
+
 ## License
 
 The MIT License.

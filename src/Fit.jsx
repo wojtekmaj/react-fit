@@ -69,19 +69,22 @@ function alignAxis({
 
   const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[clientSizeProperty];
 
+  const startSpacing = typeof spacing === 'object' ? spacing[startProperty] : spacing;
   let availableStartSpace = (
     -Math.max(
       scrollContainerCollisions[overflowStartProperty],
       documentCollisions[overflowStartProperty] + document.documentElement[scrollProperty],
     )
-    - spacing
+    - startSpacing
   );
+
+  const endSpacing = typeof spacing === 'object' ? spacing[endProperty] : spacing;
   let availableEndSpace = (
     -Math.max(
       scrollContainerCollisions[overflowEndProperty],
       documentCollisions[overflowEndProperty] - document.documentElement[scrollProperty],
     )
-    - spacing
+    - endSpacing
     - scrollbarWidth
   );
 
@@ -307,7 +310,15 @@ Fit.propTypes = {
   invertAxis: PropTypes.bool,
   invertSecondaryAxis: PropTypes.bool,
   mainAxis: PropTypes.oneOf(['x', 'y']),
-  spacing: PropTypes.number,
+  spacing: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      bottom: PropTypes.number.isRequired,
+      left: PropTypes.number.isRequired,
+      right: PropTypes.number.isRequired,
+      top: PropTypes.number.isRequired,
+    }),
+  ]),
 };
 
 Fit.defaultProps = {
