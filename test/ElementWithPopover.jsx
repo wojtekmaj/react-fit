@@ -12,7 +12,7 @@ export default function ElementWithPopover({
   const [isOpen, setIsOpen] = useState(null);
 
   function togglePopover() {
-    setIsOpen(prevIsOpen => !prevIsOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   }
 
   function renderLabel() {
