@@ -8,8 +8,8 @@
   "scripts": {
     "build": "yarn build-js-all",
     "build-js-all": "yarn build-js-esm && yarn build-js-umd",
-    "build-js-esm": "cross-env BABEL_ENV=production-esm babel src -d dist/esm --ignore \"**/*.spec.js,**/*.spec.jsx\"",
-    "build-js-umd": "cross-env BABEL_ENV=production-umd babel src -d dist/umd --ignore \"**/*.spec.js,**/*.spec.jsx\"",
+    "build-js-esm": "BABEL_ENV=production-esm babel src -d dist/esm --ignore \"**/*.spec.js,**/*.spec.jsx\"",
+    "build-js-umd": "BABEL_ENV=production-umd babel src -d dist/umd --ignore \"**/*.spec.js,**/*.spec.jsx\"",
     "clean": "rimraf dist",
     "lint": "eslint src/ test/ --ext .jsx,.js",
     "prepublishOnly": "yarn clean && yarn build",
@@ -37,7 +37,6 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.0",
     "babel-eslint": "^10.0.0",
-    "cross-env": "^7.0.0",
     "eslint": "^7.12.0",
     "eslint-config-wojtekmaj": "^0.5.0",
     "react": "^16.7.0",
