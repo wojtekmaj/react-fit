@@ -96,13 +96,13 @@ function alignAxis({
   const offsetSize = element[offsetSizeProperty];
 
   function displayStart() {
-    element.style[startProperty] = 'unset';
+    element.style[startProperty] = 'auto';
     element.style[endProperty] = secondary ? '0' : '100%';
   }
 
   function displayEnd() {
     element.style[startProperty] = secondary ? '0' : '100%';
-    element.style[endProperty] = 'unset';
+    element.style[endProperty] = 'auto';
   }
 
   function displayIfFits(availableSpace, display) {
