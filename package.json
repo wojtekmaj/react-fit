@@ -59,5 +59,6 @@
     "type": "git",
     "url": "https://github.com/wojtekmaj/react-fit.git"
   },
-  "funding": "https://github.com/wojtekmaj/react-fit?sponsor=1"
+  "funding": "https://github.com/wojtekmaj/react-fit?sponsor=1",
+  "packageManager": "yarn@3.1.0"
 }
