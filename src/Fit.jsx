@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
-
-import { warnOnDev } from './shared/utils';
+import warning from 'tiny-warning';
 
 const isBrowser = typeof window !== 'undefined';
 
@@ -126,12 +125,16 @@ function alignAxis({
     const minSize = style[minSizeProperty] && parseInt(style[minSizeProperty], 10);
 
     function shrinkToSize(size) {
-      if (minSize && size < minSize) {
-        warnOnDev(`<Fit />'s child will not fit anywhere with its current ${minSizeProperty} of ${minSize}px.`);
-      }
+      warning(
+        !minSize || size >= minSize,
+        `<Fit />'s child will not fit anywhere with its current ${minSizeProperty} of ${minSize}px.`,
+      );
 
       const newSize = Math.max(size, minSize || 0);
-      warnOnDev(`<Fit />'s child needed to have its ${sizeProperty} decreased to ${newSize}px.`);
+      warning(
+        false,
+        `<Fit />'s child needed to have its ${sizeProperty} decreased to ${newSize}px.`,
+      );
       element.style[sizeProperty] = `${newSize}px`;
     }
 
@@ -244,7 +247,7 @@ export default class Fit extends Component {
     const { position } = style;
 
     if (position !== 'absolute') {
-      warnOnDev('<Fit />\'s child does not have absolute position. You should apply `position: absolute` to it.');
+      warning(false, '<Fit />\'s child does not have absolute position. You should apply `position: absolute` to it.');
       element.style.position = 'absolute';
     }
 
@@ -256,7 +259,7 @@ export default class Fit extends Component {
     const { position: parentPosition } = parentStyle;
 
     if (parentPosition !== 'relative' && parentPosition !== 'absolute') {
-      warnOnDev('<Fit />\'s parent does not have relative position. You should apply `position: relative` to it.');
+      warning(false, '<Fit />\'s parent does not have relative position. You should apply `position: relative` to it.');
       parent.style.position = 'relative';
     }
 

@@ -28,7 +28,8 @@
   "license": "MIT",
   "dependencies": {
     "detect-element-overflow": "^1.2.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "tiny-warning": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.0",
