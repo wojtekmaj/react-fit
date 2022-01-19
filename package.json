@@ -1,6 +1,6 @@
 {
   "name": "react-fit",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Fit a popover element on the screen.",
   "main": "dist/umd/Fit.js",
   "module": "dist/esm/Fit.js",
