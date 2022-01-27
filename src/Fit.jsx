@@ -6,17 +6,10 @@ import warning from 'tiny-warning';
 
 const isBrowser = typeof window !== 'undefined';
 
-const isDisplayContentsSupported = (
-  isBrowser
-  && 'CSS' in window
-  && 'supports' in window.CSS
-  && CSS.supports('display', 'contents')
-);
+const isDisplayContentsSupported =
+  isBrowser && 'CSS' in window && 'supports' in window.CSS && CSS.supports('display', 'contents');
 
-const isMutationObserverSupported = (
-  isBrowser
-  && 'MutationObserver' in window
-);
+const isMutationObserverSupported = isBrowser && 'MutationObserver' in window;
 
 function capitalize(a) {
   return a[0].toUpperCase() + a.slice(1);
@@ -39,15 +32,7 @@ function findScrollContainer(element) {
   return document.documentElement;
 }
 
-function alignAxis({
-  axis,
-  container,
-  element,
-  invertAxis,
-  secondary,
-  scrollContainer,
-  spacing,
-}) {
+function alignAxis({ axis, container, element, invertAxis, secondary, scrollContainer, spacing }) {
   const style = window.getComputedStyle(element);
 
   const parent = container.parentElement;
@@ -69,23 +54,20 @@ function alignAxis({
   const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[clientSizeProperty];
 
   const startSpacing = typeof spacing === 'object' ? spacing[startProperty] : spacing;
-  let availableStartSpace = (
+  let availableStartSpace =
     -Math.max(
       scrollContainerCollisions[overflowStartProperty],
       documentCollisions[overflowStartProperty] + document.documentElement[scrollProperty],
-    )
-    - startSpacing
-  );
+    ) - startSpacing;
 
   const endSpacing = typeof spacing === 'object' ? spacing[endProperty] : spacing;
-  let availableEndSpace = (
+  let availableEndSpace =
     -Math.max(
       scrollContainerCollisions[overflowEndProperty],
       documentCollisions[overflowEndProperty] - document.documentElement[scrollProperty],
-    )
-    - endSpacing
-    - scrollbarWidth
-  );
+    ) -
+    endSpacing -
+    scrollbarWidth;
 
   if (secondary) {
     availableStartSpace += parent[clientSizeProperty];
@@ -210,7 +192,6 @@ export default class Fit extends Component {
   };
 
   // Has to be defined after onMutation
-  // eslint-disable-next-line react/sort-comp
   mutationObserver = isMutationObserverSupported && new MutationObserver(this.onMutation);
 
   fit = () => {
@@ -247,7 +228,10 @@ export default class Fit extends Component {
     const { position } = style;
 
     if (position !== 'absolute') {
-      warning(false, '<Fit />\'s child does not have absolute position. You should apply `position: absolute` to it.');
+      warning(
+        false,
+        "<Fit />'s child does not have absolute position. You should apply `position: absolute` to it.",
+      );
       element.style.position = 'absolute';
     }
 
@@ -259,16 +243,14 @@ export default class Fit extends Component {
     const { position: parentPosition } = parentStyle;
 
     if (parentPosition !== 'relative' && parentPosition !== 'absolute') {
-      warning(false, '<Fit />\'s parent does not have relative position. You should apply `position: relative` to it.');
+      warning(
+        false,
+        "<Fit />'s parent does not have relative position. You should apply `position: relative` to it.",
+      );
       parent.style.position = 'relative';
     }
 
-    const {
-      invertAxis,
-      invertSecondaryAxis,
-      mainAxis,
-      spacing,
-    } = this.props;
+    const { invertAxis, invertSecondaryAxis, mainAxis, spacing } = this.props;
 
     alignBothAxis({
       container,
@@ -279,7 +261,7 @@ export default class Fit extends Component {
       scrollContainer,
       spacing,
     });
-  }
+  };
 
   render() {
     const { children } = this.props;

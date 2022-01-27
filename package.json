@@ -12,6 +12,7 @@
     "build-js-umd": "BABEL_ENV=production-umd babel src -d dist/umd --ignore \"**/*.spec.js,**/*.spec.jsx\"",
     "clean": "rimraf dist",
     "lint": "eslint src/ test/ --ext .jsx,.js",
+    "postinstall": "husky install",
     "prepack": "yarn clean && yarn build",
     "test": "yarn lint"
   },
@@ -36,9 +37,11 @@
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.0",
-    "babel-eslint": "^10.0.0",
-    "eslint": "~7.19.0",
-    "eslint-config-wojtekmaj": "^0.5.0",
+    "eslint": "^8.5.0",
+    "eslint-config-wojtekmaj": "^0.6.5",
+    "husky": "^7.0.0",
+    "prettier": "^2.5.0",
+    "pretty-quick": "^3.1.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "rimraf": "^3.0.0"

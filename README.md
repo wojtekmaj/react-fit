@@ -1,23 +1,23 @@
-[![npm](https://img.shields.io/npm/v/react-fit.svg)](https://www.npmjs.com/package/react-fit) ![downloads](https://img.shields.io/npm/dt/react-fit.svg) [![CI](https://github.com/wojtekmaj/react-fit/workflows/CI/badge.svg)](https://github.com/wojtekmaj/react-fit/actions) ![dependencies](https://img.shields.io/david/wojtekmaj/react-fit.svg
-) ![dev dependencies](https://img.shields.io/david/dev/wojtekmaj/react-fit.svg
-)
+[![npm](https://img.shields.io/npm/v/react-fit.svg)](https://www.npmjs.com/package/react-fit) ![downloads](https://img.shields.io/npm/dt/react-fit.svg) [![CI](https://github.com/wojtekmaj/react-fit/workflows/CI/badge.svg)](https://github.com/wojtekmaj/react-fit/actions) ![dependencies](https://img.shields.io/david/wojtekmaj/react-fit.svg) ![dev dependencies](https://img.shields.io/david/dev/wojtekmaj/react-fit.svg)
 
 # React-Fit
+
 A component that aligns its child relatively to its parent while being aware where it may and may not fit.
 
 ## tl;dr
-* Install by executing `npm install react-fit` or `yarn add react-fit`.
-* Import by adding `import Fit from 'react-fit'`.
-* Do stuff with it!
-    ```js
-    const ElementWithChild = () => (
-      <Parent>
-        <Fit>
-          <PopoverChild />
-        </Fit>
-      </Parent>
-    );
-    ```
+
+- Install by executing `npm install react-fit` or `yarn add react-fit`.
+- Import by adding `import Fit from 'react-fit'`.
+- Do stuff with it!
+  ```js
+  const ElementWithChild = () => (
+    <Parent>
+      <Fit>
+        <PopoverChild />
+      </Fit>
+    </Parent>
+  );
+  ```
 
 ## Getting started
 
@@ -49,8 +49,8 @@ By default, the element is displayed below its parent, aligned to the left of it
 └─────────────────────────┘
 ```
 
-* To display the element above: provide `invertAxis` flag.
-* To align the element to the right: provide `invertSecondaryAxis` flag.
+- To display the element above: provide `invertAxis` flag.
+- To align the element to the right: provide `invertSecondaryAxis` flag.
 
 ### Horizontal axis (`mainAxis="x"`)
 
@@ -64,8 +64,8 @@ By providing `mainAxis="x"` to `<Fit />`, the element is displayed on the right 
              └─────────────────────────┘
 ```
 
-* To display the element on the left: provide `invertAxis` flag.
-* To align the element to the bottom: provide `invertSecondaryAxis` flag.
+- To display the element on the left: provide `invertAxis` flag.
+- To align the element to the bottom: provide `invertSecondaryAxis` flag.
 
 ### Spacing
 

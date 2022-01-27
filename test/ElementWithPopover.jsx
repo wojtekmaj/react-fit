@@ -4,11 +4,7 @@ import mergeClassNames from 'merge-class-names';
 
 import Fit from 'react-fit/src/Fit';
 
-export default function ElementWithPopover({
-  label,
-  spacing = 10,
-  ...otherProps
-}) {
+export default function ElementWithPopover({ label, spacing = 10, ...otherProps }) {
   const [isOpen, setIsOpen] = useState(null);
 
   function togglePopover() {
@@ -17,10 +13,7 @@ export default function ElementWithPopover({
 
   function renderLabel() {
     return (
-      <button
-        onClick={togglePopover}
-        type="button"
-      >
+      <button onClick={togglePopover} type="button">
         {label}
       </button>
     );
@@ -32,10 +25,7 @@ export default function ElementWithPopover({
     }
 
     return (
-      <Fit
-        spacing={spacing}
-        {...otherProps}
-      >
+      <Fit spacing={spacing} {...otherProps}>
         <div
           className={mergeClassNames(
             'ElementWithPopover__popover',
@@ -59,9 +49,7 @@ export default function ElementWithPopover({
             });
           }}
         >
-          <pre name="props">
-            {JSON.stringify(otherProps, null, '  ')}
-          </pre>
+          <pre name="props">{JSON.stringify(otherProps, null, '  ')}</pre>
           <pre name="style" />
         </div>
       </Fit>
