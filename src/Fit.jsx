@@ -228,25 +228,17 @@ export default class Fit extends Component {
     const { position } = style;
 
     if (position !== 'absolute') {
-      warning(
-        false,
-        "<Fit />'s child does not have absolute position. You should apply `position: absolute` to it.",
-      );
       element.style.position = 'absolute';
     }
 
     /**
-     * We need to ensure that <Fit />'s parent has a relative position. Otherwise,
+     * We need to ensure that <Fit />'s parent has a relative or absolute position. Otherwise,
      * we wouldn't be able to place the child in the correct position.
      */
     const parentStyle = window.getComputedStyle(parent);
     const { position: parentPosition } = parentStyle;
 
     if (parentPosition !== 'relative' && parentPosition !== 'absolute') {
-      warning(
-        false,
-        "<Fit />'s parent does not have relative position. You should apply `position: relative` to it.",
-      );
       parent.style.position = 'relative';
     }
 

@@ -99,6 +99,10 @@ If you wish to change this spacing, you can provide `spacing` to `<Fit />`. For 
 
 You can also provide different spacing for each side by providing an object, for example `spacing={{ top: 10, bottom: 20, left: 30, right: 40 }}`, to `<Fit />`. **Note:** Memoize the object or define it outside render function to avoid unnecessary re-renders.
 
+## Styling
+
+To avoid unnecessary style recalculations that may be caused by React-Fit applying the styles needed to make it work properly, the element should have absolute position, and its parent element should have relative or absolute position.
+
 ## License
 
 The MIT License.
