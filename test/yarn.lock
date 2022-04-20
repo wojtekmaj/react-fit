@@ -5343,8 +5343,8 @@ __metadata:
     prop-types: ^15.6.0
     tiny-warning: ^1.0.0
   peerDependencies:
-    react: ^15.5.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^15.5.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   languageName: node
   linkType: soft
 
