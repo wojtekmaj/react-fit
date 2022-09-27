@@ -6,10 +6,9 @@
   "module": "dist/esm/Fit.js",
   "source": "src/Fit.jsx",
   "scripts": {
-    "build": "yarn build-js-all",
-    "build-js-all": "yarn build-js-esm && yarn build-js-umd",
-    "build-js-esm": "BABEL_ENV=production-esm babel src -d dist/esm --ignore \"**/*.spec.js,**/*.spec.jsx\"",
-    "build-js-umd": "BABEL_ENV=production-umd babel src -d dist/umd --ignore \"**/*.spec.js,**/*.spec.jsx\"",
+    "build": "yarn build-esm && yarn build-umd",
+    "build-esm": "BABEL_ENV=production-esm babel src -d dist/esm --ignore \"**/*.spec.js,**/*.spec.jsx\"",
+    "build-umd": "BABEL_ENV=production-umd babel src -d dist/umd --ignore \"**/*.spec.js,**/*.spec.jsx\"",
     "clean": "rimraf dist",
     "lint": "eslint src test/ --ext .jsx,.js",
     "postinstall": "husky install",
