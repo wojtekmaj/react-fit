@@ -2467,6 +2467,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
@@ -4393,13 +4400,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"merge-class-names@npm:^1.1.1":
-  version: 1.4.2
-  resolution: "merge-class-names@npm:1.4.2"
-  checksum: 569c333ab0d7fa1e06ae6e637d58e0d4623d7b165ea78d085c1bbd042568d8793bb7ce54ec55580679416046b11fc6eaf4956d68d19964cb320edc034e182c1d
-  languageName: node
-  linkType: hard
-
 "merge-descriptors@npm:1.0.1":
   version: 1.0.1
   resolution: "merge-descriptors@npm:1.0.1"
@@ -5209,12 +5209,12 @@ __metadata:
     "@babel/preset-react": ^7.14.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.0
     babel-loader: ^9.0.0
+    clsx: ^1.2.1
     css-loader: ^6.0.0
     eslint: ^8.26.0
     html-webpack-plugin: ^5.1.0
     less: ^4.0.0
     less-loader: ^11.0.0
-    merge-class-names: ^1.1.1
     mini-css-extract-plugin: ^2.0.0
     prop-types: ^15.6.2
     react: ^18.2.0

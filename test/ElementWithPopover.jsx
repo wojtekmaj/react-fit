@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import mergeClassNames from 'merge-class-names';
+import clsx from 'clsx';
 
 import Fit from 'react-fit/src/Fit';
 
@@ -27,7 +27,7 @@ export default function ElementWithPopover({ label, spacing = 10, ...otherProps 
     return (
       <Fit spacing={spacing} {...otherProps}>
         <div
-          className={mergeClassNames(
+          className={clsx(
             'ElementWithPopover__popover',
             isOpen && 'ElementWithPopover__popover--isOpen',
           )}
