@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
 import warning from 'tiny-warning';
 
-const isBrowser = typeof window !== 'undefined';
+const isBrowser = typeof document !== 'undefined';
 
 const isDisplayContentsSupported =
   isBrowser && 'CSS' in window && 'supports' in window.CSS && CSS.supports('display', 'contents');
