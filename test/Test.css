@@ -1,0 +1,79 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Segoe UI, Tahoma, sans-serif;
+}
+
+.Test {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Test input,
+.Test button {
+  font: inherit;
+}
+
+.Test header {
+  flex-shrink: 0;
+  background-color: #323639;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.Test header h1 {
+  font-size: inherit;
+  margin: 0;
+}
+
+.Test__container {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.Test__container__content {
+  height: 100%;
+  position: relative;
+}
+
+.Test__container .ElementWithPopover {
+  width: 130px;
+  height: 42px;
+}
+
+.Test__container .ElementWithPopover button {
+  width: 130px;
+  height: 42px;
+  font-size: 12px;
+}
+
+.Test__container .ElementWithPopover__popover {
+  display: none;
+  width: 290px;
+  height: 270px;
+  min-width: 280px;
+  min-height: 104px;
+  padding: 10px;
+  border: thin solid black;
+  background: white;
+  z-index: 2;
+  overflow: auto;
+}
+
+.Test__container .ElementWithPopover__popover--isOpen {
+  display: block;
+}
+
+.Test__elementWrapper {
+  position: absolute;
+}

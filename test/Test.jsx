@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Test.less';
+import './Test.css';
 
 import ElementWithPopover from './ElementWithPopover';
 
