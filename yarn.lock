@@ -2142,9 +2142,9 @@ __metadata:
   linkType: hard
 
 "detect-element-overflow@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "detect-element-overflow@npm:1.2.0"
-  checksum: 89999c89f28e61fdc6ed61105b5fdbb1e6910d14dfae7da3b33f72dc94c28dc43f399b3e2ed41a784f07c7066d8637090a6fd05b2fde7d4b0d1350de06c8f8e4
+  version: 1.3.0
+  resolution: "detect-element-overflow@npm:1.3.0"
+  checksum: a622eaa313879f197b353cc70348aeaa2f18fe4cb3bed5c97cfad86a51af6c894447dc8798689744da2af736c929069973cb05fa05e72fa96a99b13754450b80
   languageName: node
   linkType: hard
 
