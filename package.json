@@ -10,7 +10,7 @@
     "build-esm": "BABEL_ENV=production-esm babel src -d dist/esm --ignore \"**/*.spec.js,**/*.spec.jsx\"",
     "build-cjs": "BABEL_ENV=production-cjs babel src -d dist/cjs --ignore \"**/*.spec.js,**/*.spec.jsx\"",
     "clean": "rimraf dist",
-    "lint": "eslint src test --ext .js,.jsx",
+    "lint": "eslint . --ext .js,.jsx",
     "postinstall": "husky install",
     "prepack": "yarn clean && yarn build",
     "prettier": "prettier --check . --cache",
