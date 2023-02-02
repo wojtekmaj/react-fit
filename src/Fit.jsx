@@ -109,7 +109,9 @@ function alignAxis({ axis, container, element, invertAxis, secondary, scrollCont
 
   function displayWhereverShrinkedFits() {
     const moreSpaceStart = availableStartSpace > availableEndSpace;
-    const minSize = style[minSizeProperty] && parseInt(style[minSizeProperty], 10);
+
+    const rawMinSize = style.getPropertyValue(minSizeProperty);
+    const minSize = rawMinSize ? parseInt(rawMinSize, 10) : null;
 
     function shrinkToSize(size) {
       warning(
