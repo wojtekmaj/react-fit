@@ -16,10 +16,6 @@ function capitalize(string) {
 }
 
 function findScrollContainer(element) {
-  if (!element) {
-    return undefined;
-  }
-
   let parent = element.parentElement;
   while (parent) {
     const { overflow } = window.getComputedStyle(parent);
@@ -180,26 +176,31 @@ export default class Fit extends Component {
     if (!isDisplayContentsSupported) {
       // eslint-disable-next-line react/no-find-dom-node
       const element = findDOMNode(this);
+
+      if (!element) {
+        return;
+      }
+
       this.container = element;
       this.element = element;
       this.scrollContainer = findScrollContainer(element);
     }
+
     this.fit();
 
+    const onMutation = () => {
+      this.fit();
+    };
+
     if (isMutationObserverSupported) {
-      this.mutationObserver.observe(this.element, {
+      const mutationObserver = new MutationObserver(onMutation);
+
+      mutationObserver.observe(this.element, {
         attributes: true,
         attributeFilter: ['class', 'style'],
       });
     }
   }
-
-  onMutation = () => {
-    this.fit();
-  };
-
-  // Has to be defined after onMutation
-  mutationObserver = isMutationObserverSupported && new MutationObserver(this.onMutation);
 
   fit = () => {
     const { scrollContainer, container, element } = this;
@@ -273,9 +274,13 @@ export default class Fit extends Component {
           ref={(container) => {
             this.container = container;
 
-            const element = container && container.firstChild;
-            this.element = element;
+            const element = container && container.firstElementChild;
 
+            if (!element) {
+              return;
+            }
+
+            this.element = element;
             this.scrollContainer = findScrollContainer(element);
           }}
           style={{ display: 'contents' }}
