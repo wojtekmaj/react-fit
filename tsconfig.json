@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "moduleResolution": "node",
+    "noUncheckedIndexedAccess": true,
+    "outDir": "dist",
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es5"
+  },
+  "include": ["src"]
+}

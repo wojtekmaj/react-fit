@@ -4,6 +4,34 @@ import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
 import warning from 'tiny-warning';
 
+type SpacingKeys = 'bottom' | 'left' | 'right' | 'top';
+
+type Spacing = number | { [key in SpacingKeys]: number };
+
+type AlignAxisOptions = {
+  axis: 'x' | 'y';
+  container: HTMLElement;
+  element: HTMLElement;
+  invertAxis?: boolean;
+  secondary?: boolean;
+  scrollContainer: HTMLElement;
+  spacing: Spacing;
+};
+
+type AlignBothAxisOptions = AlignAxisOptions & {
+  invertSecondaryAxis?: boolean;
+};
+
+type SizeProperty = 'width' | 'height';
+type StartProperty = 'left' | 'top';
+type EndProperty = 'right' | 'bottom';
+
+type ClientSizeProperty = 'clientWidth' | 'clientHeight';
+type MinSizeProperty = 'min-width' | 'min-height';
+type OffsetProperty = 'offsetWidth' | 'offsetHeight';
+type OverflowProperty = 'overflowLeft' | 'overflowRight' | 'overflowTop' | 'overflowBottom';
+type ScrollProperty = 'scrollLeft' | 'scrollTop';
+
 const isBrowser = typeof document !== 'undefined';
 
 const isDisplayContentsSupported =
@@ -11,11 +39,11 @@ const isDisplayContentsSupported =
 
 const isMutationObserverSupported = isBrowser && 'MutationObserver' in window;
 
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+function capitalize<T extends string>(string: T): Capitalize<T> {
+  return (string.charAt(0).toUpperCase() + string.slice(1)) as Capitalize<T>;
 }
 
-function findScrollContainer(element) {
+function findScrollContainer(element: HTMLElement): HTMLElement {
   let parent = element.parentElement;
   while (parent) {
     const { overflow } = window.getComputedStyle(parent);
@@ -28,7 +56,15 @@ function findScrollContainer(element) {
   return document.documentElement;
 }
 
-function alignAxis({ axis, container, element, invertAxis, secondary, scrollContainer, spacing }) {
+function alignAxis({
+  axis,
+  container,
+  element,
+  invertAxis,
+  secondary,
+  scrollContainer,
+  spacing,
+}: AlignAxisOptions) {
   const style = window.getComputedStyle(element);
 
   const parent = container.parentElement;
@@ -41,16 +77,16 @@ function alignAxis({ axis, container, element, invertAxis, secondary, scrollCont
   const documentCollisions = detectElementOverflow(parent, document.documentElement);
 
   const isX = axis === 'x';
-  const startProperty = isX ? 'left' : 'top';
-  const endProperty = isX ? 'right' : 'bottom';
-  const sizeProperty = isX ? 'width' : 'height';
-  const overflowStartProperty = `overflow${capitalize(startProperty)}`;
-  const overflowEndProperty = `overflow${capitalize(endProperty)}`;
-  const scrollProperty = `scroll${capitalize(startProperty)}`;
+  const startProperty: StartProperty = isX ? 'left' : 'top';
+  const endProperty: EndProperty = isX ? 'right' : 'bottom';
+  const sizeProperty: SizeProperty = isX ? 'width' : 'height';
+  const overflowStartProperty: OverflowProperty = `overflow${capitalize(startProperty)}` as const;
+  const overflowEndProperty: OverflowProperty = `overflow${capitalize(endProperty)}` as const;
+  const scrollProperty: ScrollProperty = `scroll${capitalize(startProperty)}` as const;
   const uppercasedSizeProperty = capitalize(sizeProperty);
-  const offsetSizeProperty = `offset${uppercasedSizeProperty}`;
-  const clientSizeProperty = `client${uppercasedSizeProperty}`;
-  const minSizeProperty = `min-${sizeProperty}`;
+  const offsetSizeProperty: OffsetProperty = `offset${uppercasedSizeProperty}`;
+  const clientSizeProperty: ClientSizeProperty = `client${uppercasedSizeProperty}`;
+  const minSizeProperty: MinSizeProperty = `min-${sizeProperty}`;
 
   const scrollbarWidth = scrollContainer[offsetSizeProperty] - scrollContainer[clientSizeProperty];
 
@@ -87,7 +123,7 @@ function alignAxis({ axis, container, element, invertAxis, secondary, scrollCont
     element.style[endProperty] = 'auto';
   }
 
-  function displayIfFits(availableSpace, display) {
+  function displayIfFits(availableSpace: number, display: () => void) {
     const fits = offsetSize <= availableSpace;
     if (fits) {
       display();
@@ -109,7 +145,7 @@ function alignAxis({ axis, container, element, invertAxis, secondary, scrollCont
     const rawMinSize = style.getPropertyValue(minSizeProperty);
     const minSize = rawMinSize ? parseInt(rawMinSize, 10) : null;
 
-    function shrinkToSize(size) {
+    function shrinkToSize(size: number) {
       warning(
         !minSize || size >= minSize,
         `<Fit />'s child will not fit anywhere with its current ${minSizeProperty} of ${minSize}px.`,
@@ -145,11 +181,11 @@ function alignAxis({ axis, container, element, invertAxis, secondary, scrollCont
   }
 }
 
-function alignMainAxis(args) {
+function alignMainAxis(args: AlignAxisOptions) {
   alignAxis(args);
 }
 
-function alignSecondaryAxis(args) {
+function alignSecondaryAxis(args: AlignAxisOptions) {
   alignAxis({
     ...args,
     axis: args.axis === 'x' ? 'y' : 'x',
@@ -157,7 +193,7 @@ function alignSecondaryAxis(args) {
   });
 }
 
-function alignBothAxis(args) {
+function alignBothAxis(args: AlignBothAxisOptions) {
   const { invertAxis, invertSecondaryAxis, ...commonArgs } = args;
 
   alignMainAxis({
@@ -171,13 +207,37 @@ function alignBothAxis(args) {
   });
 }
 
-export default class Fit extends Component {
+type FitProps = {
+  children: React.ReactNode;
+  invertAxis?: boolean;
+  invertSecondaryAxis?: boolean;
+  mainAxis: 'x' | 'y';
+  spacing?: number | Spacing;
+};
+
+export default class Fit extends Component<FitProps> {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    invertAxis: PropTypes.bool,
+    invertSecondaryAxis: PropTypes.bool,
+    mainAxis: PropTypes.oneOf(['x', 'y']),
+    spacing: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        bottom: PropTypes.number.isRequired,
+        left: PropTypes.number.isRequired,
+        right: PropTypes.number.isRequired,
+        top: PropTypes.number.isRequired,
+      }),
+    ]),
+  };
+
   componentDidMount() {
     if (!isDisplayContentsSupported) {
       // eslint-disable-next-line react/no-find-dom-node
       const element = findDOMNode(this);
 
-      if (!element) {
+      if (!element || !(element instanceof HTMLElement)) {
         return;
       }
 
@@ -192,7 +252,7 @@ export default class Fit extends Component {
       this.fit();
     };
 
-    if (isMutationObserverSupported) {
+    if (isMutationObserverSupported && this.element) {
       const mutationObserver = new MutationObserver(onMutation);
 
       mutationObserver.observe(this.element, {
@@ -201,6 +261,12 @@ export default class Fit extends Component {
       });
     }
   }
+
+  container?: HTMLElement | null;
+  element?: HTMLElement | null;
+  elementWidth?: number;
+  elementHeight?: number;
+  scrollContainer?: HTMLElement;
 
   fit = () => {
     const { scrollContainer, container, element } = this;
@@ -250,7 +316,7 @@ export default class Fit extends Component {
       parent.style.position = 'relative';
     }
 
-    const { invertAxis, invertSecondaryAxis, mainAxis, spacing } = this.props;
+    const { invertAxis, invertSecondaryAxis, mainAxis = 'y', spacing = 8 } = this.props;
 
     alignBothAxis({
       container,
@@ -276,7 +342,7 @@ export default class Fit extends Component {
 
             const element = container && container.firstElementChild;
 
-            if (!element) {
+            if (!element || !(element instanceof HTMLElement)) {
               return;
             }
 
@@ -293,24 +359,3 @@ export default class Fit extends Component {
     return child;
   }
 }
-
-Fit.propTypes = {
-  children: PropTypes.node,
-  invertAxis: PropTypes.bool,
-  invertSecondaryAxis: PropTypes.bool,
-  mainAxis: PropTypes.oneOf(['x', 'y']),
-  spacing: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({
-      bottom: PropTypes.number.isRequired,
-      left: PropTypes.number.isRequired,
-      right: PropTypes.number.isRequired,
-      top: PropTypes.number.isRequired,
-    }),
-  ]),
-};
-
-Fit.defaultProps = {
-  mainAxis: 'y',
-  spacing: 8,
-};
