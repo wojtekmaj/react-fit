@@ -11,8 +11,8 @@ const isDisplayContentsSupported =
 
 const isMutationObserverSupported = isBrowser && 'MutationObserver' in window;
 
-function capitalize(a) {
-  return a[0].toUpperCase() + a.slice(1);
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function findScrollContainer(element) {
