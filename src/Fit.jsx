@@ -36,6 +36,11 @@ function alignAxis({ axis, container, element, invertAxis, secondary, scrollCont
   const style = window.getComputedStyle(element);
 
   const parent = container.parentElement;
+
+  if (!parent) {
+    return;
+  }
+
   const scrollContainerCollisions = detectElementOverflow(parent, scrollContainer);
   const documentCollisions = detectElementOverflow(parent, document.documentElement);
 
@@ -197,7 +202,7 @@ export default class Fit extends Component {
   fit = () => {
     const { scrollContainer, container, element } = this;
 
-    if (!element) {
+    if (!scrollContainer || !container || !element) {
       return;
     }
 
