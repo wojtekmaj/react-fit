@@ -15,8 +15,9 @@
     "postinstall": "husky install",
     "prepack": "yarn clean && yarn build",
     "prettier": "prettier --check . --cache",
-    "test": "yarn lint && yarn tsc && yarn prettier",
-    "tsc": "tsc --noEmit"
+    "test": "yarn lint && yarn tsc && yarn prettier && yarn unit",
+    "tsc": "tsc --noEmit",
+    "unit": "vitest run"
   },
   "keywords": [
     "react",
@@ -37,15 +38,21 @@
     "tiny-warning": "^1.0.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^9.0.0",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.0",
     "eslint": "^8.26.0",
     "eslint-config-wojtekmaj": "^0.8.2",
     "husky": "^8.0.0",
+    "jsdom": "^21.1.0",
     "prettier": "^2.7.0",
     "pretty-quick": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^3.0.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vitest": "^0.29.2"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

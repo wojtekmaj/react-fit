@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Fit /> component > renders properly 1`] = `
+<div
+  style="position: relative;"
+>
+  <span
+    style="position: absolute; height: 0px; top: 100%; width: 0px; left: 0px;"
+  />
+</div>
+`;
+
+exports[`<Fit /> component > renders properly given mainAxis = "x" 1`] = `
+<div
+  style="position: relative;"
+>
+  <span
+    style="position: absolute; width: 0px; left: 100%; height: 0px; top: 0px;"
+  />
+</div>
+`;
+
+exports[`<Fit /> component > renders properly given mainAxis = "y" 1`] = `
+<div
+  style="position: relative;"
+>
+  <span
+    style="position: absolute; height: 0px; top: 100%; width: 0px; left: 0px;"
+  />
+</div>
+`;
