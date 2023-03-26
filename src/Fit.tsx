@@ -211,7 +211,7 @@ type FitProps = {
   children: React.ReactNode;
   invertAxis?: boolean;
   invertSecondaryAxis?: boolean;
-  mainAxis: 'x' | 'y';
+  mainAxis?: 'x' | 'y';
   spacing?: number | Spacing;
 };
 
