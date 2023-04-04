@@ -4,6 +4,8 @@ import './Test.css';
 
 import ElementWithPopover from './ElementWithPopover';
 
+/* eslint-disable react/no-unused-prop-types */
+
 const BUTTON_WIDTH = 130;
 const BUTTON_HEIGHT = 42;
 const MARGIN = 10;
@@ -11,13 +13,26 @@ const MARGIN = 10;
 const BEGIN = { x: 'left', y: 'top' };
 const END = { x: 'right', y: 'bottom' };
 
-const corners = Array.from(new Array(4), (el, index) => [index > 1, Boolean(index % 2)]);
+const corners: [boolean, boolean][] = Array.from(new Array(4), (el, index) => [
+  index > 1,
+  Boolean(index % 2),
+]);
 
 export default function Test() {
   const mainAxis = 'y';
 
-  function renderElement({ description, displayAbove, displayAlignRight, style }) {
-    const secondAxis = { x: 'y', y: 'x' }[mainAxis];
+  function renderElement({
+    description,
+    displayAbove,
+    displayAlignRight,
+    style,
+  }: {
+    description: string;
+    displayAbove: boolean;
+    displayAlignRight: boolean;
+    style: React.CSSProperties;
+  }) {
+    const secondAxis = ({ x: 'y', y: 'x' } as const)[mainAxis];
     const MAIN_BEGIN = BEGIN[mainAxis];
     const MAIN_END = END[mainAxis];
     const SECOND_BEGIN = END[secondAxis];
@@ -32,16 +47,26 @@ export default function Test() {
           invertSecondaryAxis={displayAlignRight}
           label={`${first} ${second} - ${description}`}
           mainAxis={mainAxis}
-        />
+        >
+          <span />
+        </ElementWithPopover>
       </div>
     );
   }
 
-  function renderElements({ collideMainAxis, collideSecondaryAxis, description }) {
+  function renderElements({
+    collideMainAxis,
+    collideSecondaryAxis,
+    description,
+  }: {
+    collideMainAxis?: boolean;
+    collideSecondaryAxis?: boolean;
+    description: string;
+  }) {
     return corners.map(([invertAxis, invertSecondaryAxis]) => {
       const displayAbove = collideSecondaryAxis ? !invertAxis : invertAxis;
       const displayAlignRight = collideMainAxis ? !invertSecondaryAxis : invertSecondaryAxis;
-      const style = {};
+      const style: React.CSSProperties = {};
       style[invertAxis ? 'bottom' : 'top'] =
         MARGIN + (collideMainAxis ? MARGIN + BUTTON_HEIGHT : 0);
       style[invertSecondaryAxis ? 'right' : 'left'] =

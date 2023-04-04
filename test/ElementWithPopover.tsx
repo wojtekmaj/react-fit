@@ -4,8 +4,17 @@ import clsx from 'clsx';
 
 import Fit from 'react-fit/src/Fit';
 
-export default function ElementWithPopover({ label, spacing = 10, ...otherProps }) {
-  const [isOpen, setIsOpen] = useState(null);
+type ElementWithPopoverProps = {
+  label?: React.ReactNode;
+  spacing?: number;
+} & React.ComponentProps<typeof Fit>;
+
+export default function ElementWithPopover({
+  label,
+  spacing = 10,
+  ...otherProps
+}: ElementWithPopoverProps) {
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   function togglePopover() {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -37,20 +46,20 @@ export default function ElementWithPopover({ label, spacing = 10, ...otherProps 
             }
 
             requestAnimationFrame(() => {
-              const style = {};
-              ['top', 'bottom', 'left', 'right'].forEach((prop) => {
+              const style: Record<string, unknown> = {};
+              (['top', 'bottom', 'left', 'right'] as const).forEach((prop) => {
                 if (ref.style[prop]) {
                   style[prop] = ref.style[prop];
                 }
               });
 
-              const el = ref.querySelector('pre[name="style"]');
+              const el = ref.querySelector('pre[id="style"]') as HTMLElement;
               el.innerHTML = JSON.stringify(style, null, '  ');
             });
           }}
         >
-          <pre name="props">{JSON.stringify(otherProps, null, '  ')}</pre>
-          <pre name="style" />
+          <pre id="props">{JSON.stringify(otherProps, null, '  ')}</pre>
+          <pre id="style" />
         </div>
       </Fit>
     );
