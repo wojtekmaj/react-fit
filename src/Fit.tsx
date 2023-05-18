@@ -207,7 +207,7 @@ function alignBothAxis(args: AlignBothAxisOptions) {
   });
 }
 
-type FitProps = {
+export type FitProps = {
   children: React.ReactNode;
   invertAxis?: boolean;
   invertSecondaryAxis?: boolean;
