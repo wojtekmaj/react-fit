@@ -27,6 +27,10 @@ Your project needs to use React 15.5 or later.
 
 A bug in React 16.5.x causes React-Fit to crash on [browsers not supporting `display: contents`](https://caniuse.com/#feat=css-display-contents). While React-Fit will continue to work on React 16.5.x, it's highly recommended that you either upgrade to ^16.6.0 or downgrade to <=16.4.2.
 
+### Installation
+
+Add React-Fit to your project by executing `npm install react-fit` or `yarn add react-fit`.
+
 ## How does it work?
 
 1. By default, the element provided to `<Fit />` as a child is displayed below its parent, aligned to the left.
