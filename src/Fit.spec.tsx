@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Fit from './Fit';
+import Fit from './Fit.js';
 
 describe('<Fit /> component', () => {
   it('renders properly', () => {

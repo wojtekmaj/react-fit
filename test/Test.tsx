@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Test.css';
 
-import ElementWithPopover from './ElementWithPopover';
+import ElementWithPopover from './ElementWithPopover.js';
 
 /* eslint-disable react/no-unused-prop-types */
 

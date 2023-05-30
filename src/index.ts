@@ -1,6 +1,6 @@
-import Fit from './Fit';
+import Fit from './Fit.js';
 
-export type { FitProps } from './Fit';
+export type { FitProps } from './Fit.js';
 
 export { Fit };
 
