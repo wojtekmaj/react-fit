@@ -47,9 +47,7 @@ export default function Test() {
           invertSecondaryAxis={displayAlignRight}
           label={`${first} ${second} - ${description}`}
           mainAxis={mainAxis}
-        >
-          <span />
-        </ElementWithPopover>
+        />
       </div>
     );
   }

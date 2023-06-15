@@ -7,7 +7,7 @@ import Fit from 'react-fit/src/Fit';
 type ElementWithPopoverProps = {
   label?: React.ReactNode;
   spacing?: number;
-} & React.ComponentProps<typeof Fit>;
+} & Omit<React.ComponentProps<typeof Fit>, 'children'>;
 
 export default function ElementWithPopover({
   label,
