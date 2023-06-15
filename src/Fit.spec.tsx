@@ -34,4 +34,32 @@ describe('<Fit /> component', () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  it('renders properly given React component as child', () => {
+    function Child() {
+      return <span />;
+    }
+
+    const { container } = render(
+      <Fit>
+        <Child />
+      </Fit>,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders properly given element with ref prop as child', () => {
+    const { container } = render(
+      <Fit>
+        <span
+          ref={() => {
+            // Intentionally empty
+          }}
+        />
+      </Fit>,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
 });

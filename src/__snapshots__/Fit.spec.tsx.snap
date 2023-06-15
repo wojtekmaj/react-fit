@@ -10,6 +10,26 @@ exports[`<Fit /> component > renders properly 1`] = `
 </div>
 `;
 
+exports[`<Fit /> component > renders properly given React component as child 1`] = `
+<div
+  style="position: relative;"
+>
+  <span
+    style="position: absolute; height: 0px; top: 100%; width: 0px; left: 0px;"
+  />
+</div>
+`;
+
+exports[`<Fit /> component > renders properly given element with ref prop as child 1`] = `
+<div
+  style="position: relative;"
+>
+  <span
+    style="position: absolute; height: 0px; top: 100%; width: 0px; left: 0px;"
+  />
+</div>
+`;
+
 exports[`<Fit /> component > renders properly given mainAxis = "x" 1`] = `
 <div
   style="position: relative;"
