@@ -23,9 +23,7 @@ A component that aligns its child relatively to its parent while being aware whe
 
 ### Compatibility
 
-Your project needs to use React 15.5 or later.
-
-A bug in React 16.5.x causes React-Fit to crash on [browsers not supporting `display: contents`](https://caniuse.com/#feat=css-display-contents). While React-Fit will continue to work on React 16.5.x, it's highly recommended that you either upgrade to ^16.6.0 or downgrade to <=16.4.2.
+Your project needs to use React 16.8 or later.
 
 ### Installation
 
