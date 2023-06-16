@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Component } from 'react';
+import React, { Children, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
 import warning from 'tiny-warning';
@@ -213,66 +213,40 @@ export type FitProps = {
   spacing?: number | Spacing;
 };
 
-export default class Fit extends Component<FitProps> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    invertAxis: PropTypes.bool,
-    invertSecondaryAxis: PropTypes.bool,
-    mainAxis: PropTypes.oneOf(['x', 'y'] as const),
-    spacing: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.shape({
-        bottom: PropTypes.number.isRequired,
-        left: PropTypes.number.isRequired,
-        right: PropTypes.number.isRequired,
-        top: PropTypes.number.isRequired,
-      }),
-    ]),
-  };
+export default function Fit({
+  children,
+  invertAxis,
+  invertSecondaryAxis,
+  mainAxis = 'y',
+  spacing = 8,
+}: FitProps) {
+  const container = useRef<HTMLElement>();
+  const element = useRef<HTMLElement>();
+  const elementWidth = useRef<number>();
+  const elementHeight = useRef<number>();
+  const scrollContainer = useRef<HTMLElement>();
 
-  componentDidMount() {
-    this.fit();
-
-    const onMutation = () => {
-      this.fit();
-    };
-
-    if (isMutationObserverSupported && this.element) {
-      const mutationObserver = new MutationObserver(onMutation);
-
-      mutationObserver.observe(this.element, {
-        attributes: true,
-        attributeFilter: ['class', 'style'],
-      });
-    }
-  }
-
-  container?: HTMLElement | null;
-  element?: HTMLElement | null;
-  elementWidth?: number;
-  elementHeight?: number;
-  scrollContainer?: HTMLElement;
-
-  fit = () => {
-    const { scrollContainer, container, element } = this;
-
-    if (!scrollContainer || !container || !element) {
+  const fit = useCallback(() => {
+    if (!scrollContainer.current || !container.current || !element.current) {
       return;
     }
 
-    const elementWidth = element.clientWidth;
-    const elementHeight = element.clientHeight;
+    const currentElementWidth = element.current.clientWidth;
+    const currentElementHeight = element.current.clientHeight;
 
     // No need to recalculate - already did that for current dimensions
-    if (this.elementWidth === elementWidth && this.elementHeight === elementHeight) {
+    if (
+      elementWidth.current === currentElementWidth &&
+      elementHeight.current === currentElementHeight
+    ) {
       return;
     }
 
     // Save the dimensions so that we know we don't need to repeat the function if unchanged
-    this.elementWidth = elementWidth;
-    this.elementHeight = elementHeight;
+    elementWidth.current = currentElementWidth;
+    elementHeight.current = currentElementHeight;
 
-    const parent = container.parentElement;
+    const parent = container.current.parentElement;
 
     // Container was unmounted
     if (!parent) {
@@ -283,11 +257,11 @@ export default class Fit extends Component<FitProps> {
      * We need to ensure that <Fit />'s child has a absolute position. Otherwise,
      * we wouldn't be able to place the child in the correct position.
      */
-    const style = window.getComputedStyle(element);
+    const style = window.getComputedStyle(element.current);
     const { position } = style;
 
     if (position !== 'absolute') {
-      element.style.position = 'absolute';
+      element.current.style.position = 'absolute';
     }
 
     /**
@@ -301,42 +275,76 @@ export default class Fit extends Component<FitProps> {
       parent.style.position = 'relative';
     }
 
-    const { invertAxis, invertSecondaryAxis, mainAxis = 'y', spacing = 8 } = this.props;
-
     alignBothAxis({
       axis: mainAxis,
-      container,
-      element,
+      container: container.current,
+      element: element.current,
       invertAxis,
       invertSecondaryAxis,
-      scrollContainer,
+      scrollContainer: scrollContainer.current,
       spacing,
     });
-  };
+  }, [invertAxis, invertSecondaryAxis, mainAxis, spacing]);
 
-  render() {
-    const { children } = this.props;
+  const child = Children.only(children);
 
-    const child = React.Children.only(children);
+  useEffect(() => {
+    fit();
 
-    return (
-      <span
-        ref={(container) => {
-          this.container = container;
+    function onMutation() {
+      fit();
+    }
 
-          const element = container && container.firstElementChild;
+    if (isMutationObserverSupported && element.current) {
+      const mutationObserver = new MutationObserver(onMutation);
 
-          if (!element || !(element instanceof HTMLElement)) {
-            return;
-          }
+      mutationObserver.observe(element.current, {
+        attributes: true,
+        attributeFilter: ['class', 'style'],
+      });
+    }
+  }, [fit]);
 
-          this.element = element;
-          this.scrollContainer = findScrollContainer(element);
-        }}
-        style={{ display: 'contents' }}
-      >
-        {child}
-      </span>
-    );
+  function assignRefs(domElement: Element | null) {
+    if (!domElement || !(domElement instanceof HTMLElement)) {
+      return;
+    }
+
+    element.current = domElement;
+    scrollContainer.current = findScrollContainer(domElement);
   }
+
+  return (
+    <span
+      ref={(domContainer) => {
+        if (!domContainer) {
+          return;
+        }
+
+        container.current = domContainer;
+        const domElement = domContainer?.firstElementChild;
+
+        assignRefs(domElement);
+      }}
+      style={{ display: 'contents' }}
+    >
+      {child}
+    </span>
+  );
 }
+
+Fit.propTypes = {
+  children: PropTypes.node.isRequired,
+  invertAxis: PropTypes.bool,
+  invertSecondaryAxis: PropTypes.bool,
+  mainAxis: PropTypes.oneOf(['x', 'y']),
+  spacing: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      bottom: PropTypes.number.isRequired,
+      left: PropTypes.number.isRequired,
+      right: PropTypes.number.isRequired,
+      top: PropTypes.number.isRequired,
+    }),
+  ]),
+};
