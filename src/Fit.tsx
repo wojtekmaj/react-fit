@@ -222,7 +222,7 @@ export default class Fit extends Component<FitProps> {
     children: PropTypes.node.isRequired,
     invertAxis: PropTypes.bool,
     invertSecondaryAxis: PropTypes.bool,
-    mainAxis: PropTypes.oneOf(['x', 'y']),
+    mainAxis: PropTypes.oneOf(['x', 'y'] as const),
     spacing: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.shape({
