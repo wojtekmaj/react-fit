@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import Fit from 'react-fit/src/Fit';
@@ -72,8 +71,3 @@ export default function ElementWithPopover({
     </div>
   );
 }
-
-ElementWithPopover.propTypes = {
-  label: PropTypes.node,
-  spacing: PropTypes.number,
-};
