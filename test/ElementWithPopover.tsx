@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 
-import Fit from 'react-fit/src/Fit';
+import Fit from 'react-fit';
 
 type ElementWithPopoverProps = {
   label?: React.ReactNode;
