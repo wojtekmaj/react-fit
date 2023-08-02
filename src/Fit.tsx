@@ -1,7 +1,6 @@
 'use client';
 
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
 import warning from 'tiny-warning';
@@ -35,9 +34,6 @@ type OverflowProperty = 'overflowLeft' | 'overflowRight' | 'overflowTop' | 'over
 type ScrollProperty = 'scrollLeft' | 'scrollTop';
 
 const isBrowser = typeof document !== 'undefined';
-
-const isDisplayContentsSupported =
-  isBrowser && 'CSS' in window && 'supports' in window.CSS && CSS.supports('display', 'contents');
 
 const isMutationObserverSupported = isBrowser && 'MutationObserver' in window;
 
@@ -235,19 +231,6 @@ export default class Fit extends Component<FitProps> {
   };
 
   componentDidMount() {
-    if (!isDisplayContentsSupported) {
-      // eslint-disable-next-line react/no-find-dom-node
-      const element = findDOMNode(this);
-
-      if (!element || !(element instanceof HTMLElement)) {
-        return;
-      }
-
-      this.container = element;
-      this.element = element;
-      this.scrollContainer = findScrollContainer(element);
-    }
-
     this.fit();
 
     const onMutation = () => {
@@ -336,28 +319,24 @@ export default class Fit extends Component<FitProps> {
 
     const child = React.Children.only(children);
 
-    if (isDisplayContentsSupported) {
-      return (
-        <span
-          ref={(container) => {
-            this.container = container;
+    return (
+      <span
+        ref={(container) => {
+          this.container = container;
 
-            const element = container && container.firstElementChild;
+          const element = container && container.firstElementChild;
 
-            if (!element || !(element instanceof HTMLElement)) {
-              return;
-            }
+          if (!element || !(element instanceof HTMLElement)) {
+            return;
+          }
 
-            this.element = element;
-            this.scrollContainer = findScrollContainer(element);
-          }}
-          style={{ display: 'contents' }}
-        >
-          {child}
-        </span>
-      );
-    }
-
-    return child;
+          this.element = element;
+          this.scrollContainer = findScrollContainer(element);
+        }}
+        style={{ display: 'contents' }}
+      >
+        {child}
+      </span>
+    );
   }
 }
