@@ -15,8 +15,8 @@ type AlignAxisOptions = {
   container: HTMLElement;
   element: HTMLElement;
   invertAxis?: boolean;
-  secondary?: boolean;
   scrollContainer: HTMLElement;
+  secondary?: boolean;
   spacing: Spacing;
 };
 
@@ -63,8 +63,8 @@ function alignAxis({
   container,
   element,
   invertAxis,
-  secondary,
   scrollContainer,
+  secondary,
   spacing,
 }: AlignAxisOptions) {
   const style = window.getComputedStyle(element);
@@ -321,11 +321,11 @@ export default class Fit extends Component<FitProps> {
     const { invertAxis, invertSecondaryAxis, mainAxis = 'y', spacing = 8 } = this.props;
 
     alignBothAxis({
+      axis: mainAxis,
       container,
       element,
       invertAxis,
       invertSecondaryAxis,
-      axis: mainAxis,
       scrollContainer,
       spacing,
     });
