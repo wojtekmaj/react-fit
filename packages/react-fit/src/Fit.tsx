@@ -37,7 +37,11 @@ type ScrollProperty = 'scrollLeft' | 'scrollTop';
 const isBrowser = typeof document !== 'undefined';
 
 const isDisplayContentsSupported =
-  isBrowser && 'CSS' in window && window.CSS !== undefined && 'supports' in window.CSS && CSS.supports('display', 'contents');
+  isBrowser &&
+  'CSS' in window &&
+  window.CSS !== undefined &&
+  'supports' in window.CSS &&
+  CSS.supports('display', 'contents');
 
 const isMutationObserverSupported = isBrowser && 'MutationObserver' in window;
 
