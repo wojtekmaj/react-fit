@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
-import warning from 'tiny-warning';
+import warning from 'warning';
 
 type SpacingKeys = 'bottom' | 'left' | 'right' | 'top';
 
