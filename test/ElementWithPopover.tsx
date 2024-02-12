@@ -21,7 +21,7 @@ export default function ElementWithPopover({
 
   function renderLabel() {
     return (
-      <button onClick={togglePopover} type="button">
+      <button aria-expanded={isOpen || false} onClick={togglePopover} type="button">
         {label}
       </button>
     );
