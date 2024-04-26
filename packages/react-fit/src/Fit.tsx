@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Component } from 'react';
+import { Children, Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
@@ -334,7 +334,7 @@ export default class Fit extends Component<FitProps> {
   render() {
     const { children } = this.props;
 
-    const child = React.Children.only(children);
+    const child = Children.only(children);
 
     if (isDisplayContentsSupported) {
       return (
