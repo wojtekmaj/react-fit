@@ -2,7 +2,6 @@
 
 import { Children, Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import PropTypes from 'prop-types';
 import detectElementOverflow from 'detect-element-overflow';
 import warning from 'warning';
 
@@ -218,22 +217,6 @@ export type FitProps = {
 };
 
 export default class Fit extends Component<FitProps> {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    invertAxis: PropTypes.bool,
-    invertSecondaryAxis: PropTypes.bool,
-    mainAxis: PropTypes.oneOf(['x', 'y'] as const),
-    spacing: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.shape({
-        bottom: PropTypes.number.isRequired,
-        left: PropTypes.number.isRequired,
-        right: PropTypes.number.isRequired,
-        top: PropTypes.number.isRequired,
-      }),
-    ]),
-  };
-
   componentDidMount() {
     if (!isDisplayContentsSupported) {
       // eslint-disable-next-line react/no-find-dom-node
