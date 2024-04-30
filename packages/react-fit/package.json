@@ -46,7 +46,6 @@
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^15.0.0",
     "@types/react": "*",
-    "@types/react-dom": "*",
     "@types/warning": "^3.0.0",
     "eslint": "^8.56.0",
     "eslint-config-wojtekmaj": "^1.0.0",
@@ -60,7 +59,6 @@
   },
   "peerDependencies": {
     "@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
