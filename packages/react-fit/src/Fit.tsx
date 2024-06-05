@@ -140,7 +140,7 @@ function alignAxis({
     const moreSpaceStart = availableStartSpace > availableEndSpace;
 
     const rawMinSize = style.getPropertyValue(minSizeProperty);
-    const minSize = rawMinSize ? parseInt(rawMinSize, 10) : null;
+    const minSize = rawMinSize ? Number.parseInt(rawMinSize, 10) : null;
 
     function shrinkToSize(size: number) {
       warning(
@@ -165,7 +165,7 @@ function alignAxis({
     }
   }
 
-  let fits;
+  let fits: boolean;
 
   if (invertAxis) {
     fits = displayStartIfFits() || displayEndIfFits();

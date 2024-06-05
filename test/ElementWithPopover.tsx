@@ -46,11 +46,11 @@ export default function ElementWithPopover({
 
             requestAnimationFrame(() => {
               const style: Record<string, unknown> = {};
-              (['top', 'bottom', 'left', 'right'] as const).forEach((prop) => {
+              for (const prop of ['top', 'bottom', 'left', 'right'] as const) {
                 if (ref.style[prop]) {
                   style[prop] = ref.style[prop];
                 }
-              });
+              }
 
               const el = ref.querySelector('pre[id="style"]') as HTMLElement;
               el.innerHTML = JSON.stringify(style, null, '  ');
