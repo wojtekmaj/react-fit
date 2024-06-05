@@ -2,8 +2,6 @@ import './Test.css';
 
 import ElementWithPopover from './ElementWithPopover.js';
 
-/* eslint-disable react/no-unused-prop-types */
-
 const BUTTON_WIDTH = 130;
 const BUTTON_HEIGHT = 42;
 const MARGIN = 10;
