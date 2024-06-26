@@ -218,7 +218,7 @@ export default function Fit({
   invertSecondaryAxis,
   mainAxis = 'y',
   spacing = 8,
-}: FitProps) {
+}: FitProps): React.ReactElement {
   const container = useRef<HTMLElement | undefined>(undefined);
   const element = useRef<HTMLElement | undefined>(undefined);
   const elementWidth = useRef<number | undefined>(undefined);
