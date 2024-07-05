@@ -32,7 +32,7 @@ type OffsetProperty = 'offsetWidth' | 'offsetHeight';
 type OverflowProperty = 'overflowLeft' | 'overflowRight' | 'overflowTop' | 'overflowBottom';
 type ScrollProperty = 'scrollLeft' | 'scrollTop';
 
-const isBrowser = typeof document !== 'undefined';
+const isBrowser = typeof window !== 'undefined';
 
 const isMutationObserverSupported = isBrowser && 'MutationObserver' in window;
 
