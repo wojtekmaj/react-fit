@@ -9,7 +9,7 @@ const MARGIN = 10;
 const BEGIN = { x: 'left', y: 'top' };
 const END = { x: 'right', y: 'bottom' };
 
-const corners: [boolean, boolean][] = Array.from(new Array(4), (el, index) => [
+const corners: [boolean, boolean][] = Array.from(new Array(4), (_el, index) => [
   index > 1,
   Boolean(index % 2),
 ]);
