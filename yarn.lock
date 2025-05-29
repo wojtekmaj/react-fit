@@ -1238,10 +1238,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-element-overflow@npm:^1.4.0":
-  version: 1.4.1
-  resolution: "detect-element-overflow@npm:1.4.1"
-  checksum: 10c0/7e8a83a6f3311f3ed433b3e1bf90ee98fe44084d8e309b887456bb9c843381958eb864be982e7fb0fe9ca9412420a860dfa979b7cdce9fb7c0924a3f649749c1
+"detect-element-overflow@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "detect-element-overflow@npm:2.0.0"
+  checksum: 10c0/43d764fd84a3bd54bca5aca30069cf573036f95380746c6d405c73f36b3cd14f357c5c04684fcbccfee272c60f1f67d5eeb76aa0a08df58f329be4f61a5fdb38
   languageName: node
   linkType: hard
 
@@ -2015,7 +2015,7 @@ __metadata:
     "@types/react": "npm:*"
     "@types/react-dom": "npm:*"
     "@types/warning": "npm:^3.0.0"
-    detect-element-overflow: "npm:^1.4.0"
+    detect-element-overflow: "npm:^2.0.0"
     happy-dom: "npm:^15.10.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
