@@ -1,6 +1,6 @@
 {
   "name": "react-fit",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Fit a popover element on the screen.",
   "type": "module",
   "sideEffects": false,
