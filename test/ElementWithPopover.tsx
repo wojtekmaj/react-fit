@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import clsx from 'clsx';
 
 import Fit from 'react-fit';
@@ -13,6 +13,8 @@ export default function ElementWithPopover({
   spacing = 10,
   ...otherProps
 }: ElementWithPopoverProps) {
+  const propsId = useId();
+  const styleId = useId();
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   function togglePopover() {
@@ -52,13 +54,13 @@ export default function ElementWithPopover({
                 }
               }
 
-              const el = ref.querySelector('pre[id="style"]') as HTMLElement;
+              const el = ref.querySelector(`#${styleId}`) as HTMLElement;
               el.innerHTML = JSON.stringify(style, null, '  ');
             });
           }}
         >
-          <pre id="props">{JSON.stringify(otherProps, null, '  ')}</pre>
-          <pre id="style" />
+          <pre id={propsId}>{JSON.stringify(otherProps, null, '  ')}</pre>
+          <pre id={styleId} />
         </div>
       </Fit>
     );
