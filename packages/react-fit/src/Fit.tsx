@@ -288,9 +288,11 @@ export default function Fit({
   const child = Children.only(children);
 
   useEffect(() => {
+    // biome-ignore lint/suspicious/noFocusedTests: False positive, see https://github.com/biomejs/biome/issues/6380
     fit();
 
     function onMutation() {
+      // biome-ignore lint/suspicious/noFocusedTests: False positive, see https://github.com/biomejs/biome/issues/6380
       fit();
     }
 
