@@ -18,6 +18,7 @@
     "unit": "yarn workspaces foreach --all run unit"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.0.0",
     "husky": "^9.0.0"
   },
   "packageManager": "yarn@4.9.1"

@@ -2057,6 +2057,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-fit-monorepo@workspace:."
   dependencies:
+    "@biomejs/biome": "npm:2.0.0"
     husky: "npm:^9.0.0"
   languageName: unknown
   linkType: soft
