@@ -46,7 +46,7 @@
     "@types/react-dom": "*",
     "@types/warning": "^3.0.0",
     "@vitest/browser": "^3.2.3",
-    "playwright": "^1.51.1",
+    "playwright": "^1.55.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.9.2",
