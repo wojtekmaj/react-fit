@@ -1,6 +1,5 @@
 import { useId, useState } from 'react';
 import clsx from 'clsx';
-
 import Fit from 'react-fit';
 
 type ElementWithPopoverProps = {
