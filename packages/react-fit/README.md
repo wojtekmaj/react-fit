@@ -9,6 +9,7 @@ A component that aligns its child relatively to its parent while being aware whe
 - Install by executing `npm install react-fit` or `yarn add react-fit`.
 - Import by adding `import Fit from 'react-fit'`.
 - Do stuff with it!
+
   ```tsx
   function ElementWithChild() {
     return (
